@@ -6,8 +6,7 @@ FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
 
 OBJ = $(SRC:.cpp=.o)
 
-SRC =	vector.cpp\
-		main.cpp\
+SRC =	main.cpp
 
 LIB =	vector.hpp
 

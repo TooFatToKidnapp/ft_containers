@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 14:38:34 by aabdou            #+#    #+#             */
-/*   Updated: 2022/08/29 20:05:42 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/02 18:36:18 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,63 +18,41 @@
 #include <limits>
 
 template<typename T>
-class custom_Allocator
-{
+class custom_Allocator {
+
 	public:
-		typedef		T				value_type;
-		typedef		T*				pointer;
-		typedef		const T*		const_pointer;
-		typedef		void *			void_pointer;
-		typedef		const void *	const_void_pointer;
-		typedef		size_t			size_type;
-		typedef		std::ptrdiff_t	difference_type;
+		typedef T				value_type;
+		typedef T				*pointer;
+		typedef const T			*const_pointer;
+		typedef T				&reference;
+		typedef const T			&const_reference;
+		typedef size_t			size_type;
+		typedef ptrdiff_t		difference_type;
 
+	template<typename U> //required for std::list to work properly (convert custom_Allocator<T> to )
+	struct rebind {
+		typedef custom_Allocator<U> other;
+	};
+	custom_Allocator(){}
+	~custom_Allocator(){}
+	custom_Allocator(const custom_Allocator &obj){}
 	template<typename U>
-	struct rebind
-	{
-		typedef costom_Allocator<U> other;
+	custom_Allocator(custom_Allocator<U> const &obj){}
+		//address
+	pointer address(reference r){
+		return &r;
 	}
-	costom_Allocator();
-	template<class U>
-	costom_Allocator(const costom_Allocator<U> &other){}
-	~costom_Allocator();
-	pointer	allocate(size_type nb_of_obj)
-	{
-		mAllocations++;
-		return static_cast<pointer>(new(sizeof(T) * nb_of_obj));
+	const_pointer address(const_reference r){
+		return &r;
 	}
-	pointer	allocate(size_type nb_of_obj)
-	{
-		return allocate(nb_of_obj);
+		//memory allocation
+	pointer allocate(size_type len, typename std::allocator<void>::const_pointer = 0){
+		return reinterpret_cast<pointer>(::operator new(len * sizeof(T))); // allocate the given size of the type 'T' WITH OUT CONSTRUCTING IT (VERRY IMPORTENT)
 	}
-	void	deallocate(pointer p, size_type nb_of_obj)
-	{
-		delete p;
-	}
-	size_type	max_size(void) const
-	{
-		return std::numeric_limits<size_type>::max();
-	}
-	template<class U, class... Args>
-	void construct(U *p, Args && ...args)
-	{
-		new(p) U(std::forward<Args>(args)...);
-	}
-	template<class U>
-	void destroy(U *p)
-	{
-		p->~U();
-	}
-	size_type get_allocations() const
-	{
-		return mAllocations;
+	void deallocate(pointer p, size_type len){
+		::operator delete(p);
 	}
 
-	private:
-		static size_type mAllocations;
 };
-
-template <typename T>
-typename custom_allocator<T>::size_type TrackingAllocator<T>::mAllocations = 0;
 
 #endif

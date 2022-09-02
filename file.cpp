@@ -5,20 +5,17 @@
 
 class Int
 {
-	private:
-		static bool bIsconstructed;
 	public:
 		int x;
+		Int(){std::cout << "here" << std::endl;}
 		Int(int i)
 		{
-			std::cout << "constructing" << (void *)this << std::endl;
+			std::cout << "constructing " << (void *)this << std::endl;
 			x = i;
-			bIsconstructed = true;
 		}
 		~Int()
 		{
-			std::cout << "Dustructing" << (void *)this << std::endl;
-			bIsconstructed = false;
+			std::cout << "Dustructing " << (void *)this << std::endl;
 		}
 		Int &operator++()
 		{
@@ -27,8 +24,9 @@ class Int
 		}
 };
 
+
 int main()
 {
-	std::vector<int, custom_Allocator<int> > v;
-	return 0;
+	Int *obj = (Int *)::operator new(1 * sizeof(Int));
+	::operator delete(obj);
 }

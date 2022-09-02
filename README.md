@@ -12,3 +12,7 @@ https://www.youtube.com/watch?v=pP15kDeXJU0&t=196s
 https://developer.ibm.com/tutorials/au-memorymanager/
 
 https://www.ibm.com/docs/en/SSGH3R_13.1.3/com.ibm.compilers.aix.doc/standlib.pdf //page 236
+
+https://www.codeproject.com/Articles/4795/C-Standard-Allocator-An-Introduction-and-Implement
+
+https://medium.com/@terselich/1-a-guide-to-implement-a-simple-c-stl-allocator-705ede6b60e4

@@ -1,5 +1,5 @@
-#include "vector.hpp"
-
+#include "allocator.hpp"
+#include <vector>
 int main()
 {
 	// namespace xD = test;
@@ -32,20 +32,22 @@ int main()
 	// }
 	// delete vec;
 
-	ft::vector<int> vec;
-	vec.push(0);
-	vec.push(2);
-	vec.push(3);
-	vec.push(4);
-	vec.push(5);
-	vec.push(6);
-	vec.push(7);
-	vec.push(8);
-	vec.push(9);
-	vec.push(10);
+	std::vector<int, custom_Allocator<int> > vec;
+	vec.push_back(0);
+	vec.push_back(2);
+	vec.push_back(3);
+	vec.push_back(4);
+	vec.push_back(5);
+	vec.push_back(6);
+	vec.push_back(7);
+	vec.push_back(8);
+	vec.push_back(9);
+	vec.push_back(10);
 	std::cout << "vec size = " << vec.size() << std::endl;
-	std::cout << "vec capacity = " << vec.getcapacity() << std::endl;
 
-	std::cout << "vec data " << std::endl;
-	vec.print();
+	std::vector<int, custom_Allocator<int> >::iterator itt = vec.begin();
+	while(itt != vec.end()){
+		std::cout << *itt << std::endl;
+		itt++;
+	}
 }

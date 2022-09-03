@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 14:38:34 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/02 18:36:18 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/03 01:39:44 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,13 @@ class custom_Allocator {
 	};
 	custom_Allocator(){}
 	~custom_Allocator(){}
-	custom_Allocator(const custom_Allocator &obj){}
+	custom_Allocator(const custom_Allocator &obj){
+		(void)obj;
+	}
 	template<typename U>
-	custom_Allocator(custom_Allocator<U> const &obj){}
+	custom_Allocator(custom_Allocator<U> const &obj){
+		(void)obj;
+	}
 		//address
 	pointer address(reference r){
 		return &r;
@@ -50,8 +54,18 @@ class custom_Allocator {
 		return reinterpret_cast<pointer>(::operator new(len * sizeof(T))); // allocate the given size of the type 'T' WITH OUT CONSTRUCTING IT (VERRY IMPORTENT)
 	}
 	void deallocate(pointer p, size_type len){
+		(void)len;
 		::operator delete(p);
 	}
+	size_type max_size(void) const {
+		return std::numeric_limits<size_type>::max() / sizeof(value_type);
+	}
+	void construct(pointer p, const_reference r){
+		new ((void*)p) value_type(r);
+	}
+	void destroy(pointer p){
+		((pointer)p)->~value_type();
+	};
 
 };
 

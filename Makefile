@@ -23,3 +23,5 @@ clean :
 
 fclean : clean
 	rm -fr $(OBJ)
+
+re : fclean all

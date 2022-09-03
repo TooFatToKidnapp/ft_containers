@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 14:38:34 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/03 01:39:44 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/03 16:42:48 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #define ALLOCATOR_HPP
 
 #include <iostream>
-#include <cstddef>
 #include <limits>
+
+// subject said that u HAVE TO USE std::allocator FFS
 
 template<typename T>
 class custom_Allocator {

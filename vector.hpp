@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/08/29 17:33:53 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/03 23:19:26 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,49 @@
 #define VECTOR_HPP
 
 #include <iostream>
-#include <vector>
-#include "allocator.hpp"
+#include <algorithm> // max, mix, fill_n
+#include <memory> // std::allocator
+#include <cstddef> // ptrdiff_t / size_t
+#include "allocator.hpp" // :(
 
 namespace ft
 {
-	template<typename T, class Alloc = allocator<T> >
-	class vector
-	{
-		private:
-			T*				data;
-			size_t			capacity;
-			size_t			current;
+	template<typename T, class Alloc = std::allocator<T> >
+	class vector {
+
 		public:
-			vector()
-			{
-				data = new T[1];
-				capacity  = 1;
-				current = 0;
-			}
-			~vector()
-			{
-				delete [] data;
-			}
-			void push(T val)
-			{
-				if (current == capacity)
-				{
-					T *tmp = new T[2 * capacity];
-					for (unsigned int i = 0; i < capacity; i++)
-						tmp[i] = data[i];
-					delete [] data;
-					capacity = capacity * 2;
-					data = tmp;
-				}
-				data[current] = val;
-				current++;
-			}
-			void push(T val, int index)
-			{
-				if (index == capacity)
-					push(val);
-				else
-					data[index] = val;
-			}
-			T get(unsigned int index)
-			{
-				if (index < current)
-					return data[index];
-			}
-			void pop()
-			{
-				current--;
-			}
-			int size()
-			{
-				return current;
-			}
-			int getcapacity()
-			{
-				return capacity;
-			}
-			void print();
+			typedef T									value_type;
+			typedef Alloc								allocator_type;
+			typedef	std::size_t							size_type;
+			typedef std::ptrdiff_t						difference_type;
+			typedef typename Alloc::reference			reference;
+			typedef typename Alloc::const_reference		const_reference;
+			typedef typename Alloc::pointer				pointer;
+			typedef typename Alloc::const_pointer		const_pointer;
+			//itterators not yet implemented
+
+			// vector's core
+		private:
+			Alloc						_alloc;
+			size_type					_current_capacity;
+			pointer						_array;
+			size_type					_current_size;
+
+
+			//member functions
+		public:
+		// constructors and assignment operators
+			// default: empty container (only runs if its explicitly calld)
+			explicit vector(Alloc const & alloc = Alloc());
+			//fill container with n elem, each are a copy of val
+			explicit vector(size_type n, T const &val = T(),
+							Alloc const& alloc = Alloc());
+
+
+
+
+		private:
+			size_t fill_insert(pointer pos, size_type count, T const& val);
 	};
 }
 

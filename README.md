@@ -16,3 +16,9 @@ https://www.ibm.com/docs/en/SSGH3R_13.1.3/com.ibm.compilers.aix.doc/standlib.pdf
 https://www.codeproject.com/Articles/4795/C-Standard-Allocator-An-Introduction-and-Implement
 
 https://medium.com/@terselich/1-a-guide-to-implement-a-simple-c-stl-allocator-705ede6b60e4
+
+
+std::vector reff:
+
+https://www.ibm.com/docs/en/xl-c-and-cpp-aix/12.1.0?topic=SSGH3R_12.1.0/com.ibm.xlcpp121.aix.doc/standlib/stl_vector.html
+https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-170

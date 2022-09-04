@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/03 23:19:26 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/04 18:36:24 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ namespace ft
 			//fill container with n elem, each are a copy of val
 			explicit vector(size_type n, T const &val = T(),
 							Alloc const& alloc = Alloc());
-
-
-
+			//copy container elms into another vector
+			vector(vector const &obj);
+			//destructor
+			~vector();
 
 		private:
-			size_t fill_insert(pointer pos, size_type count, T const& val);
+			size_t _fill_insert(pointer pos, size_type count, T const& val);
 	};
 }
 

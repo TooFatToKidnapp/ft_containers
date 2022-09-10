@@ -43,7 +43,7 @@ ft::vector<T, Alloc>::vector(const vector &obj){
 	this->_alloc = obj._alloc;
 	this->_current_size = obj._current_size;
 	this->_current_capacity = this->_current_size;
-	this->_array = this->_alloc.allocate(this->_current_size)
+	this->_array = this->_alloc.allocate(this->_current_size);
 	try{
 		*this = obj;
 	}

@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/10 10:54:40 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/10 18:37:25 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include <cstddef> // ptrdiff_t / size_t
 #include "allocator.hpp" // :(
 #include "./utils/iterator.hpp"
+#include "./utils/type_traits.hpp"
 
 namespace ft
 {

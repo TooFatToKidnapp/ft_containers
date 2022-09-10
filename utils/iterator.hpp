@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:01:38 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/10 17:25:19 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/10 18:37:52 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ namespace ft{
 		typedef T								value_type;
 		typedef T*								pointer;
 		typedef T&								reference;
-		typedef ft::random_access_iterator_tag	iterator_categoty
+		typedef ft::random_access_iterator_tag	iterator_categoty;
 	};
 
 	//const T* specializatio
@@ -84,7 +84,7 @@ namespace ft{
 		typedef T								value_type;
 		typedef T const*						pointer;
 		typedef T const&						reference;
-		typedef ft::random_access_iterator_tag	iterator_categoty
+		typedef ft::random_access_iterator_tag	iterator_categoty;
 	};
 
 	template <class input_itt>

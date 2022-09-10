@@ -24,3 +24,11 @@ https://www.ibm.com/docs/en/xl-c-and-cpp-aix/12.1.0?topic=SSGH3R_12.1.0/com.ibm.
 https://docs.microsoft.com/en-us/cpp/standard-library/vector-class?view=msvc-170
 
 https://iq.opengenus.org/implement-binary-search-tree-in-cpp/
+
+
+
+iterators :
+
+https://www.internalpointers.com/post/writing-custom-iterators-modern-cpp
+
+The C++Standard Library - 2nd Edition.pdf //page 434

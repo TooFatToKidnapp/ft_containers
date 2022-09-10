@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:01:38 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/10 10:53:34 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/10 17:25:19 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,20 @@
 #include<cstddef> // ptrdiff_t, size_t
 
 namespace ft{
+
+	/*
+		cant creat seperat itt tags, as they would only work for ft::iterators
+		without being compatible to std::iterators, therefor defeating the purpose of
+		general itt tags
+
+		struct output_iterator_tag {};
+		struct input_iterator_tag {};
+		struct forward_iterator_tag: public input_iterator_tag {};
+		struct bidirectional_iterator_tag: public forward_iterator_tag {};
+		struct random_access_iterator_tag: public bidirectional_iterator_tag {};
+	*/
+
+
 	//iterator tags
 	//these are types used to distinguish different iterators.
 	typedef std::input_iterator_tag				input_iterator_tag;

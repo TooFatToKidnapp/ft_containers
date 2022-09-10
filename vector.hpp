@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/04 18:36:24 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/10 10:54:40 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <memory> // std::allocator
 #include <cstddef> // ptrdiff_t / size_t
 #include "allocator.hpp" // :(
+#include "./utils/iterator.hpp"
 
 namespace ft
 {

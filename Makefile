@@ -8,7 +8,8 @@ OBJ = $(SRC:.cpp=.o)
 
 SRC =	main.cpp
 
-LIB =	vector.hpp
+LIB =	vector.hpp\
+		./utils/iterator.hpp
 
 all : $(NAME)
 

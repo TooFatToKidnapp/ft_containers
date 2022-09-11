@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:17:12 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/11 10:32:06 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/11 15:15:48 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,182 @@ namespace ft {
 			pointer base(void) const {
 				return _current;
 			}
+
+		// operators
+			//returns a ref to the value at _current (if derefrenceable)
+			reference	operator*()const{
+				return *_current;
+			}
+
+			//returns a pointer to the value at _current (if derefrenceable)
+			pointer	operator->() const{
+				return _current;
+			}
+
+			//returns value at _current + 'n'
+			reference	operator[](difference_type n) const{
+				return _current[n];
+			}
+
+			//user defined conversion function for converting to const it
+			operator random_access_iterator<T const>() const{
+				return random_access_iterator<T const>(_current);
+			}
+
+			// returns an iterator rederring to _curent + 'n'
+			random_access_iterator operator+(difference_type n) const {
+				return random_access_iterator(_current + n);
+			}
+
+			// pre-increment ++i
+			random_access_iterator &operator++(){
+				++_current;
+				return *this;
+			}
+
+			// post-increment i++
+			random_access_iterator operator++(int){
+				random_access_iterator tmp = *this;
+				++_current;
+				return tmp;
+			}
+
+			// moves iterator forward n steps
+			random_access_iterator &operator+=(difference_type n){
+				_current += n;
+				return *this;
+			}
+
+			// returns it rederring to _current -n
+			random_access_iterator operator-(difference_type n) const {
+				return random_access_iterator(_current - n);
+			}
+
+			// --i
+			random_access_iterator &operator--(){
+				--_current;
+				return *this;
+			}
+
+			// i--
+			random_access_iterator operator--(int){
+				random_access_iterator tmp = *this;
+				--_current;
+				return tmp;
+			}
+
+			// move backwards n steps
+			random_access_iterator &operator-=(difference_type n){
+				_current -= n;
+				return *this;
+			}
 	};
-}
+
+	// non member functions
+
+		//return distance in address between 2 it
+		template<class T>
+		typename random_access_iterator<T>::difference operator-(
+			random_access_iterator<T> const &start,
+			random_access_iterator<T> const end){
+			return start.base() - end.base();
+		}
+
+		// op- must support mixed const / non const iterator param
+		template<class TL, class TR>
+		typename random_access_iterator<TL>::defference_type operator-(
+			random_access_iterator<TL> const & start,
+			random_access_iterator<TR> const &end){
+				return start.base() - end.base();
+			}
+
+		template<class T>
+		random_access_iterator<T>operator+(
+			typename random_access_iterator<T>::defference_type n,
+			random_access_iterator<T> const & i){
+				return random_access_iterator<T>(i.base() + n);
+			}
+
+		template<class T>
+		bool	operator==(random_access_iterator<T> const &obj,
+			random_access_iterator<T> const &obj2){
+				return (obj.base() == obj2.base());
+			}
+
+		// for comparison between defferent typed iterators (const == non const)
+		template<class TL,class TR>
+		bool	operator==(random_access_iterator<TL> const &obj,
+			random_access_iterator<TR> const &obj2){
+				return (obj.base() == obj2.base());
+			}
+
+
+		template<class T>
+		bool	operator!=(random_access_iterator<T> const &obj,
+			random_access_iterator<T> const &obj2){
+				return obj.base() != obj2.base();
+			}
+
+		// for comparison between defferent typed iterators (const == non const)
+		template<class TL,class TR>
+		bool	operator!=(random_access_iterator<TL> const &obj,
+			random_access_iterator<TR> const &obj2){
+				return obj.base() != obj2.base();
+			}
+
+		template<class T>
+		bool	operator<(random_access_iterator<T> const &obj,
+			random_access_iterator<T> const &obj2){
+				return obj.base() < obj2.base();
+			}
+
+		// const < non const
+		template<class TL, class TR>
+		bool	operator<(random_access_iterator<TL> const &obj,
+			random_access_iterator<TR> const &obj2){
+				return obj.base() < obj2.base();
+			}
+
+		template<class T>
+		bool	operator>(random_access_iterator<T> const &obj,
+			random_access_iterator<T> const &obj2){
+				return obj.base() > obj2.base();
+			}
+
+		// const < non const
+		template<class TL, class TR>
+		bool	operator>(random_access_iterator<TL> const &obj,
+			random_access_iterator<TR> const &obj2){
+				return obj.base() > obj2.base();
+			}
+
+		template<class T>
+		bool	operator<=(random_access_iterator<T> const &obj,
+			random_access_iterator<T> const &obj2){
+				return obj.base() <= obj2.base();
+			}
+
+		// const < non const
+		template<class TL, class TR>
+		bool	operator<=(random_access_iterator<TL> const &obj,
+			random_access_iterator<TR> const &obj2){
+				return obj.base() <= obj2.base();
+			}
+
+				template<class T>
+		bool	operator>=(random_access_iterator<T> const &obj,
+			random_access_iterator<T> const &obj2){
+				return obj.base() >= obj2.base();
+			}
+
+		// const < non const
+		template<class TL, class TR>
+		bool	operator>=(random_access_iterator<TL> const &obj,
+			random_access_iterator<TR> const &obj2){
+				return obj.base() >= obj2.base();
+			}
+
+} // namespace ft
 
 
 

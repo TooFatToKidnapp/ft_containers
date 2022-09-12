@@ -31,4 +31,6 @@ iterators :
 
 https://www.internalpointers.com/post/writing-custom-iterators-modern-cpp
 
+https://anderberg.me/2016/07/04/c-custom-iterators/
+
 The C++Standard Library - 2nd Edition.pdf //page 434

@@ -4,6 +4,6 @@
 
 int main()
 {
-	ft::vector<int> vec;
+	ft::vector<int> vec(10, 11);
 
 }

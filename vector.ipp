@@ -21,8 +21,29 @@ ft::vector<T, Alloc>::vector(size_type n, T const &val, Alloc const &alloc){
 		this->_alloc.deallocate(this->_array, n);
 		throw;
 	}
-
 }
+
+// range constructor
+// also called if passing 2 integers as first 2 params, insted if fill cons.
+// Exceptions:
+// std::distance may throw if arithnatical operations preformed on the iterators throw.
+// allocator::allocate & allocator::construct may throw bad_alloc.
+// note: if constructors throw, destructor is not called, so clean up should be done here b4 throw
+template<class T, class Alloc>
+template<class InputIterator>
+ft::vector<T, Alloc>::vector(InputIterator first,
+		InputIterator last, Alloc const &alloc) : _alloc(alloc){
+	try{
+		//checks if integral ype received. if so, its not an iterator.
+		typedef typename ft::is_integral<InputIterator>::type	Integral;
+		_range_dispatch(first, last, Integral());
+	}
+	catch(...){
+		_alloc.deallocate(_array, _current_size);
+		throw;
+	}
+}
+
 
 template<class T, class Alloc>
 ft::vector<T, Alloc>::~vector(){
@@ -70,4 +91,16 @@ size_t ft::vector<T, Alloc>::_fill_insert(pointer pos, size_type count, T const&
 			this->_alloc.destroy(pos + 1);
 		throw;
 	}
+}
+
+//	internal function called by range constructor
+//	integer specialization
+template<class T, class Alloc>
+template<class Integer>
+void	ft::vector<T, Alloc>::_range_dispatch(Integer n, Integer value, ft::true_type){
+	size_type count = static_cast<size_type>(n);
+	_array = _alloc.allocate(count);
+	_current_size = count;
+	_current_capacity = _current_size;
+	_fill_insert(_array, count, value);
 }

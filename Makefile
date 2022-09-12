@@ -8,10 +8,11 @@ OBJ = $(SRC:.cpp=.o)
 
 SRC =	main.cpp
 
-LIB =	vector.hpp\
+LIB =	./vector.hpp\
+		./vector.ipp\
 		./utils/iterator.hpp\
 		./utils/random_access_iterator.hpp\
-		./utils/type_traits.hpp
+		./utils/type_traits.hpp\
 
 all : $(NAME)
 

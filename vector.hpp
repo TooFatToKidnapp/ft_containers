@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/12 14:37:00 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/13 11:05:56 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include "./utils/iterator.hpp"
 #include "./utils/type_traits.hpp"
 #include "./utils/random_access_iterator.hpp"
+#include "./utils/reverse_iterator.hpp"
 
 namespace ft
 {

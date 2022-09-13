@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/26 14:38:34 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/12 16:19:23 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/13 11:07:57 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class custom_Allocator {
 		typedef T				*pointer;
 		typedef const T			*const_pointer;
 		typedef T				&reference;
-		typedef const T		c	&const_reference;
+		typedef const T			&const_reference;
 		typedef size_t			size_type;
 		typedef ptrdiff_t		difference_type;
 
@@ -40,7 +40,7 @@ class custom_Allocator {
 		(void)obj;
 	}
 	template<typename U>
-	custom_Allocator(custom_Allocator<U> onst &obj){
+	custom_Allocator(custom_Allocator<U> const &obj){
 		(void)obj;
 	}
 		//address

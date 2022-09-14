@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 12:51:11 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 17:54:53 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,8 +256,6 @@ void ft::vector<T, Alloc>::clear(){
 	_destroy_until(this->begin(), this->end());
 }
 
-
-
 // Because vectors use an array as their underlying storage, inserting elements
 // in positions other than the vector end causes the container to relocate
 // all the elements after 'pos' to their new positions
@@ -266,13 +264,142 @@ void ft::vector<T, Alloc>::clear(){
 // If not, only after point of insertion.
 // Exceptions: strong guarantee if exception occurs.
 template<class T, class Alloc>
-typename ft::vector<T,Alloc>::iterator	ft::vector<T,Alloc>::insert(iterator pos, const &value){
+typename ft::vector<T,Alloc>::iterator	ft::vector<T,Alloc>::insert(iterator pos, T const &value){
 	difference_type offset = ft::distance(this->begin(), pos);
 	this->insert(pos, 1, value);
 	return (this->_array + offset);
 }
 
 
+template<class T, class Alloc>
+void ft::vector<T, Alloc>::insert(iterator pos, size_type count, T const &value){
+	size_type		old_cap = this->capacity();
+	difference_type	offset = ft::distance(this->begin(), pos);
+	try{
+		if (this->size() + count > this->capacity())
+			_reallocate(std::max(this->capacity() * 2, this->size() + count));
+		if (pos != this->end()){
+			size_type	array_cap = this->capacity();
+			pointer		tmp = _alloc.allocate(capacity());
+			size_t		new_size = 0;
+			// copy till 'pos' index, then insert new elements, after finish copying rest of
+			// array to avoid invalid read issues
+			new_size += _range_copy_forward(tmp, begin(), begin() + offset);
+			new_size += _fill_insert(tmp + offset, count, value);
+			new_size += _range_copy_forward(tmp + offset, count, begin() + offset, end());
+
+			_destroy_until(this->begin(), this->end());
+			_alloc.deallocate(this->_array, this->_current_capacity);
+			this->_array = tmp;
+			this->_current_size = new_size;
+			this->_current_capacity = array_cap;
+		}
+		else
+			this->_current_size += _fill_insert(this->_array + offset, count, value);
+	}
+	catch (...){
+		if (old_cap < this->capacity())
+			_alloc.deallocate(&*(this->_array + offset), this->capacity() - old_cap);
+		throw;
+	}
+}
+
+template<class T,class Alloc>
+template<class InputIterator>
+void ft::vector<T,Alloc>::insert(iterator pos, InputIterator first, InputIterator last,
+		typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type*){
+	size_type		old_cap = this->capacity();
+	difference_type	offset = ft::distance(this->begin(), pos);
+	difference_type	count = ft::distance(first, last);
+	try{
+		if (this->size() + count > this->capacity())
+			_reallocate(std::max(this->capacity() * 2, this->size() + count));
+		if (pos != this->end()){
+			size_type	array_cap = this->capacity();
+			pointer		tmp = _alloc.allocate(capacity());
+			size_t		new_size = 0;
+			// copy till 'pos' index, then insert new elements, after finish copying rest of
+			// array to avoid invalid read issues
+			new_size += _range_copy_forward(tmp, begin(), begin() + offset);
+			new_size += _range_copy_forward(tmp + offset, first, last);
+			new_size += _range_copy_forward(tmp + offset, count, begin() + offset, end());
+
+			_destroy_until(this->begin(), this->end());
+			_alloc.deallocate(this->_array, this->_current_capacity);
+			this->_array = tmp;
+			this->_current_size = new_size;
+			this->_current_capacity = array_cap;
+		}
+		else
+			this->_current_size += _range_copy_forward(this->_array + offset, first, last);
+	}
+	catch (...){
+		if (old_cap < this->capacity())
+			_alloc.deallocate(&*(this->begin() + offset), this->capacity() - old_cap);
+		throw;
+	}
+}
+
+// Because vectors use an array as their underlying storage, erasing elements
+// in positions other than the vector end causes the container to relocate
+// all the elements after the segment erased to their new positions
+// `pos` must be dereferencable. User has responsibility to pass valid input
+// `end()` is not valid and causes undefined behaviour
+// Iterator invalidation: erased elements and all following including end()
+// Exceptions: does not throw unless exception is thrown by the assignment operator of T
+// Returns:	iterator following last removed element
+// If operation erased last element, end() is returned
+template<class T, class Alloc>
+typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator pos){
+	if (pos + 1 != this->end())
+		_range_copy_forward(pos, pos + 1 , end());
+	this->_current_size--;
+	_alloc.destroy(&this->_array[this->_current_size - 1]);
+	return pos;
+}
+
+
+// the iterator first dose not need to be dereferenceble if first==last
+// erasing an empty range is a no-op
+// invalid range causes undefined behaviour
+// returns : first if empty range or first == end();
+template<class T, class Alloc>
+typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator first, iterator last){
+	if (first != last){
+		iterator	saved_end = this->_array + this->_current_size;
+		size_type	elems_after = ft::distance(last , saved_end);
+		if (last != saved_end)
+			_range_copy_forward(first, last, saved_end);
+		_destroy_until((first + elems_after), saved_end);
+	}
+	return first;
+}
+
+
+
+// Iterator invalidation: If reallocation happens, all invalidated, If not, only end().
+// Exceptions: strong guarantee, function has no effect.
+// May throw length_error if reallocation exceeds max_size.
+template<class T, class Alloc>
+void ft::vector<T, Alloc>::push_back(T const & value){
+	if(this->capacity() == this->size()){
+		size_t len = 0;
+		if (this->size() == 0)
+			len = 1;
+		else
+			len = this->size() * 2;
+		_reallocate(len);
+	}
+	this->_alloc.construct(this->_array + this->_current_size, value);
+	this->_current_size++;
+}
+
+// iterator invalidation if elm earased and end()
+template<class T, class Alloc>
+void ft::vector<T, Alloc>::pop_back(){
+	this->_alloc.destroy(this->_array + (this->_current_size - 1));
+	this->_current_size--;
+}
 
 
 
@@ -374,4 +501,21 @@ void	ft::vector<T,Alloc>::_destroy_until(iterator end, iterator start){
 		}
 	}
 	return;
+}
+
+// internal function called by erase, insert, _range_dispatch (range constructor)
+// insets element in range [first, last] at 'pos'
+// return number of elements copied
+template<class T, class Alloc>
+template<class InputIterator>
+size_t	ft::vector<T,Alloc>::_range_copy_forward(iterator pos, InputIterator first, InputIterator last){
+	size_type	copied = 0;
+
+	while (first != last){
+		_alloc.construct(&*pos, *first);
+		++pos;
+		++first;
+		++copied;
+	}
+	return copied;
 }

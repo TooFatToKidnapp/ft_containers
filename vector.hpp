@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 12:46:55 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 17:51:10 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <algorithm> // max, mix, fill_n
 #include <memory> // std::allocator
 #include <cstddef> // ptrdiff_t / size_t
+#include <stdexcept> // std::out_of_range
 #include "allocator.hpp" // :(
 #include "./utils/iterator.hpp"
 #include "./utils/type_traits.hpp"
@@ -122,7 +123,26 @@ namespace ft
 			// typical alternative that forces reallocation : vector<T>().swap(x);
 			void		clear();
 			// insert a single element at a specified 'pos', increasing the size by 1
-			iterator	insert(iterator pos, const &value);
+			iterator	insert(iterator pos, T const &value);
+			// insert 'count' elements initialized with the value 'value'
+			void		insert(iterator pos, size_type count, T const &value);
+			// inserts elements in range [first, last] at 'pos' in the same order
+			template<class InputIterator>
+			void		insert(iterator pos, InputIterator first, InputIterator last,
+						typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = NULL);
+			// erases (destroys) single element at 'pos', reducing the size by 1
+			iterator	erase(iterator pos);
+			// erases a range of elements
+			iterator	erase(iterator first, iterator last);
+			// adds new element to end of vector, copying/moving contant if value to it
+			// increases the size by 1
+			// automatic reallocation is only triggerd if new size surpasses current capacity
+			void push_back(T const & value);
+			// removes and destroys last element , reducing size by 1
+			void pop_back();
+
+
+
 
 
 		private:
@@ -136,6 +156,8 @@ namespace ft
 			template<class InputIterator>
 			void	_assign_range(InputIterator first, InputIterator last);
 			void	_destroy_until(iterator start, iterator end);
+			template<class InputIterator>
+			size_t	_range_copy_forward(iterator pos, InputIterator first, InputIterator last);
 	};
 }
 

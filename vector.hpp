@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 10:58:06 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 12:46:55 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,14 +108,34 @@ namespace ft
 			// this is not always equal to caontainer size
 			size_type	capacity() const;
 
+		// modifier functions
+			// replaces current contents with 'count' elements, each initialized
+			// to a copy of 'value'
+			void		assign(size_type count, T const &value);
+			// replace current contents with elements constructed from
+			// elements in range [first,last] in the same order
+			template<class InputIterator>
+			void		assign(InputIterator first, InputIterator last,
+					typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type* = NULL);
+			// removes (destroys) all elements from the vector, leaving size of 0
+			// reallocation id not guarenteed and capacity is not guarenteed to change
+			// typical alternative that forces reallocation : vector<T>().swap(x);
+			void		clear();
+			// insert a single element at a specified 'pos', increasing the size by 1
+			iterator	insert(iterator pos, const &value);
+
 
 		private:
-			size_t _fill_insert(pointer pos, size_type count, T const& val);
+			size_t	_fill_insert(pointer pos, size_type count, T const& val);
 			template<class Integer>
-			void _range_dispatch(Integer n, Integer value, ft::true_type);
+			void	_range_dispatch(Integer n, Integer value, ft::true_type);
 			template<class InputIterator>
-			void _range_dispatch(InputIterator n, InputIterator value, ft::false_type);
+			void	_range_dispatch(InputIterator n, InputIterator value, ft::false_type);
 			void	_reallocate(size_type new_size);
+			void	_assign_fill(size_type count, const T& value);
+			template<class InputIterator>
+			void	_assign_range(InputIterator first, InputIterator last);
+			void	_destroy_until(iterator start, iterator end);
 	};
 }
 

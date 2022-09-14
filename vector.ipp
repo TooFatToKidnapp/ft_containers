@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 10:58:29 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 12:51:11 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,9 +232,57 @@ typename ft::vector<T,Alloc>::size_type ft::vector<T,Alloc>::capacity() const{
 	return this->_current_capacity;
 }
 
+		//modifiers
+// destroy current elements and replase with newly constucted ones
+// automaticlly reallocates if new_size > current capacity
+// iterator invalidation: all
+template<class T, class Alloc>
+void ft::vector<T,Alloc>::assign(size_type count, const T& value){
+	_assign_fill(count, value);
+}
+
+template<class T, class Alloc>
+template<class InputIterator>
+void ft::vector<T,Alloc>::assign(InputIterator first, InputIterator last,
+						typename ft::enable_if<!ft::is_integral<InputIterator>::value>::type*){
+	_assign_range(first, last);
+}
+
+// after a clear() call size returns to 0 and capacity is unchanged
+// iterator invalidation: all refs, ptrs, and iterators referring to contained elements
+// no-throw guaranteed
+template<class T, class Alloc>
+void ft::vector<T, Alloc>::clear(){
+	_destroy_until(this->begin(), this->end());
+}
 
 
 
+// Because vectors use an array as their underlying storage, inserting elements
+// in positions other than the vector end causes the container to relocate
+// all the elements after 'pos' to their new positions
+// Reallocates exponentially (N * 2) if current capacity is insufficient.
+// Iterator invalidation: If reallocation happens, all invalidated.
+// If not, only after point of insertion.
+// Exceptions: strong guarantee if exception occurs.
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::iterator	ft::vector<T,Alloc>::insert(iterator pos, const &value){
+	difference_type offset = ft::distance(this->begin(), pos);
+	this->insert(pos, 1, value);
+	return (this->_array + offset);
+}
+
+
+
+
+
+
+
+
+
+
+
+			//privat helper functions
 //	internal function called by fill constractor
 //	inserts count elements with the value 'value' at 'pos'
 //	return nb of elms constructed
@@ -287,4 +335,43 @@ void	ft::vector<T,Alloc>::_reallocate(size_type new_cap){
 		if (new_start)
 			this->_alloc.deallocate(new_start, new_cap);
 	}
+}
+
+// internal function called bt assign
+template<class T, class Alloc>
+void	ft::vector<T,Alloc>::_assign_fill(size_type count, const T& value){
+	this->clear();
+	if (count == 0)
+		return;
+	this->reserve(count);
+	this->insert(begin(), count, value);
+}
+
+
+// inturnal function called by assign (range)
+template<class T, class Alloc>
+template<class InputIterator>
+void	ft::vector<T,Alloc>::_assign_range(InputIterator first, InputIterator last){
+	size_type	count = ft::distance(first, last);
+
+	this->clear();
+	if (count == 0)
+		return ;
+	this->reserve(count);
+	//for (; first != last; ++first)
+		//push_back(*first); push_back not yet implemented
+}
+
+// internal function called bt resize, erase
+// destroys elements from 'end' to 'start' and adjusts size
+// if end exceeds start , do nothing
+template<class T,class Alloc>
+void	ft::vector<T,Alloc>::_destroy_until(iterator end, iterator start){
+	if (start - end){
+		for (; end != start; end++) {
+			_alloc.destroy(&*end);
+			this->size -= 1;
+		}
+	}
+	return;
 }

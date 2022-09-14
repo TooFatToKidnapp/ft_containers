@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/13 11:05:56 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 09:04:01 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ namespace ft
 			typedef typename Alloc::const_pointer					const_pointer;
 			typedef ft::random_access_iterator<value_type>			iterator;
 			typedef ft::random_access_iterator<value_type const>	const_iterator;
-			// still need reverse iterator
+			typedef ft::reverse_iterator<iterator>					reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 
 			// vector's core
 		private:
@@ -63,8 +64,23 @@ namespace ft
 					 Alloc const & alloc = Alloc());
 			//copy container elms into another vector
 			vector(vector const &obj);
+			// assignment operator
+			vector &operator=(const vector &obj); // needs iterator metods
 			//destructor
 			~vector();
+
+		// vector iterator functions
+			iterator				begin();
+			const_iterator			begin() const;
+			iterator				end();
+			const_iterator			end() const;
+			reverse_iterator		rbegin();
+			const_reverse_iterator	rbegin() const;
+			reverse_iterator		rend();
+			const_reverse_iterator	rend() const;
+
+			//returns a copy of the allocator object assosciated with the vector
+			allocator_type			get_allocator() const;
 
 		private:
 			size_t _fill_insert(pointer pos, size_type count, T const& val);

@@ -3,30 +3,13 @@
 #include<memory>
 #include "allocator.hpp"
 
-class Int
-{
-	public:
-		int x;
-		Int(){std::cout << "here" << std::endl;}
-		Int(int i)
-		{
-			std::cout << "constructing " << (void *)this << std::endl;
-			x = i;
-		}
-		~Int()
-		{
-			std::cout << "Dustructing " << (void *)this << std::endl;
-		}
-		Int &operator++()
-		{
-			x++;
-			return *this;
-		}
-};
-
 
 int main()
 {
-	Int *obj = (Int *)::operator new(1 * sizeof(Int));
-	::operator delete(obj);
+	std::vector<int> vec = {1,2,3,45,5,6};
+
+	std::vector<int>::reverse_iterator itt = vec.rbegin();
+		std::cout << *itt << std::endl;
+	// for(; itt != vec.rend(); itt++){
+	// }
 }

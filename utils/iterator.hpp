@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:01:38 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/10 18:37:52 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/13 17:07:05 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ namespace ft{
 		typedef ft::random_access_iterator_tag	iterator_categoty;
 	};
 
-	//const T* specializatio
+	//const T* specialization
 	template<class T>
 	struct iterator_traits<T const*>{
 		typedef std::ptrdiff_t					difference_type;

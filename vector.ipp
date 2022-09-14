@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector.ipp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
+/*   Updated: 2022/09/14 09:12:24 by aabdou           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vector.hpp"
 
 template<class T, class Alloc>
@@ -72,6 +84,75 @@ ft::vector<T, Alloc>::vector(const vector &obj){
 		this->_alloc.deallocate(this->_array, this->_current_size);
 	}
 }
+
+			// ITERATOR FUNCITOTN
+		// iteration is done in ordinary elment order
+
+// returns iterator that points to the first element in a vector
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::iterator ft::vector<T, Alloc>::begin() {
+	return iterator(this->_array);
+}
+
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_iterator ft::vector<T, Alloc>::begin() const {
+	return const_iterator(this->_array);
+}
+
+// returns iterator pointing to one past the last element
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::iterator ft::vector<T, Alloc>::end() {
+	return iterator(this->_array + this->_current_size);
+}
+
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_iterator ft::vector<T, Alloc>::end() const{
+	return const_iterator(this->_array + this->_current_size);
+}
+
+//returns reverse iterator pointing to last element
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::reverse_iterator ft::vector<T, Alloc>::rbegin() {
+	return reverse_iterator(end());
+}
+
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_reverse_iterator ft::vector<T, Alloc>::rbegin() const{
+	return const_reverse_iterator(end());
+}
+
+//returns reverse iterator pointing to first element
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::reverse_iterator ft::vector<T, Alloc>::rend() {
+	return reverse_iterator(begin());
+}
+
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_reverse_iterator ft::vector<T, Alloc>::rend() const{
+	return const_reverse_iterator(begin());
+}
+
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::allocator_type ft::vector<T, Alloc>::get_allocator() const{
+	return this->_alloc;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //	internal function called by fill constractor

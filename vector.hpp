@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 09:04:01 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 10:12:56 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,16 @@ namespace ft
 
 			//returns a copy of the allocator object assosciated with the vector
 			allocator_type			get_allocator() const;
+
+		// vector access function
+			reference			operator[](size_type pos);
+			const_reference		operator[](size_type pos) const;
+			reference			at(size_type pos);
+			const_reference		at(size_type pos) const;
+			reference			front();
+			const_reference		front() const;
+			reference			back();
+			const_reference		back() const;
 
 		private:
 			size_t _fill_insert(pointer pos, size_type count, T const& val);

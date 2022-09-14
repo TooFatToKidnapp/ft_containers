@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 09:12:24 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 10:17:22 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,22 +137,56 @@ typename ft::vector<T,Alloc>::allocator_type ft::vector<T, Alloc>::get_allocator
 	return this->_alloc;
 }
 
+		// element access finctions
+//returns element at given index (dose not check for out of bounds)
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::reference ft::vector<T, Alloc>::operator[](size_type pos){
+	return this->_array[pos];
+}
 
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_reference ft::vector<T, Alloc>::operator[](size_type pos) const{
+	return this->_array[pos];
+}
 
+// provides safer data access then [] by checking parameter befor access
+// throws exception if pos is invalid index
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::reference ft::vector<T, Alloc>::at(size_type pos){
+	if(pos >= this->_current_size)
+		throw std::out_of_range("vector::at - index given is out of range");
+	return this->_array[pos];
+}
 
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_reference ft::vector<T, Alloc>::at(size_type pos) const{
+	if(pos >= this->_current_size)
+		throw std::out_of_range("vector::at - index given is out of range");
+	return this->_array[pos];
+}
 
+// returns reference to data at the first elemnt of the vector
+// calling front on an empty container is undefined
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::reference ft::vector<T, Alloc>::front(){
+	return *begin();
+}
 
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_reference ft::vector<T, Alloc>::front() const{
+	return *begin();
+}
 
+// returns reference to data at the last element of the vector
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::reference ft::vector<T, Alloc>::back(){
+	return *(end() - 1);
+}
 
-
-
-
-
-
-
-
-
-
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::const_reference ft::vector<T, Alloc>::back() const{
+	return *(end() - 1);
+}
 
 
 //	internal function called by fill constractor

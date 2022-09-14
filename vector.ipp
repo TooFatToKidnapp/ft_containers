@@ -16,7 +16,7 @@ template<class T, class Alloc>
 ft::vector<T, Alloc>::vector(Alloc const &alloc){
 	this->_current_capacity = 0;
 	this->_current_size = 0;
-	this->_array = nullptr;
+	this->_array = 	NULL;
 	this->_alloc = alloc;
 }
 
@@ -450,7 +450,7 @@ void	ft::vector<T,Alloc>::_reallocate(size_type new_cap){
 
 	try{
 		new_start = this->_alloc.allocate(new_cap);
-		for(; new_size < this->_current_sizel ; new_size++){
+		for(; new_size < this->_current_size ; new_size++){
 			_alloc.construct(new_start + new_size, this->_array[new_size]);
 		}
 		this->_alloc.deallocate(this->_array, this->_current_capacity);

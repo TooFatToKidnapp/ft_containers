@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 10:17:22 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 10:58:29 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,52 @@ typename ft::vector<T,Alloc>::const_reference ft::vector<T, Alloc>::back() const
 }
 
 
+	/// capacity functions
+
+template<class T, class Alloc>
+bool ft::vector<T,Alloc>::empty() const{
+	if (this->_current_size == 0)
+		return true;
+	return false;
+}
+
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::size_type ft::vector<T,Alloc>::size() const{
+	return this->_current_size;
+}
+
+// the difference between vector start and end cannot exceed ptrdiff_max
+// even if _alloc.max_size says we can , so we return the lesser value
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::size_type ft::vector<T,Alloc>::max_size() const{
+	ft::vector<T, Alloc>::size_type max_diff = std::numeric_limits<ptrdiff_t>::max();
+	ft::vector<T, Alloc>::size_type max_alloc = this->_alloc.max_size();
+	return std::min(max_diff, max_alloc);
+}
+
+//	Only reallocates storage, increasing capacity to `cap`,
+//	if `cap` > current capacity. Has no effect on current size.
+//	Iterator invalidation:	if reallocation happens, all invalidated.
+//	Exceptions:
+//	If size requested > vector::max_size, throws length_error exception;
+//	If reallocating, allocator may throw bad_alloc.
+template<class T, class Alloc>
+void ft::vector<T,Alloc>::reserve(size_type cap){
+	if (cap > this->max_size())
+		throw std::length_error("vector::reserve - new_cap exceeds vector max_size");
+	if (cap > this->capacity()){
+		_reallocate(cap);
+	}
+}
+
+template<class T, class Alloc>
+typename ft::vector<T,Alloc>::size_type ft::vector<T,Alloc>::capacity() const{
+	return this->_current_capacity;
+}
+
+
+
+
 //	internal function called by fill constractor
 //	inserts count elements with the value 'value' at 'pos'
 //	return nb of elms constructed
@@ -218,4 +264,27 @@ void	ft::vector<T, Alloc>::_range_dispatch(Integer n, Integer value, ft::true_ty
 	_current_size = count;
 	_current_capacity = _current_size;
 	_fill_insert(_array, count, value);
+}
+
+// internal function called by reserve ans insert
+// reallocates array to new_cap size, copying over any existing elements
+template<class T, class Alloc>
+void	ft::vector<T,Alloc>::_reallocate(size_type new_cap){
+	pointer		new_start = NULL;
+	size_type	new_size = 0;
+
+	try{
+		new_start = this->_alloc.allocate(new_cap);
+		for(; new_size < this->_current_sizel ; new_size++){
+			_alloc.construct(new_start + new_size, this->_array[new_size]);
+		}
+		this->_alloc.deallocate(this->_array, this->_current_capacity);
+		this->_array = new_start;
+		this->_current_size = new_size;
+		this->_current_capacity = new_cap;
+	}
+	catch(...){
+		if (new_start)
+			this->_alloc.deallocate(new_start, new_cap);
+	}
 }

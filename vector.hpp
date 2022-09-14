@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 10:12:56 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/14 10:58:06 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,30 @@ namespace ft
 			reference			back();
 			const_reference		back() const;
 
+		// capacity functions
+
+			// check if vector is empty
+			bool		empty() const;
+			// returns current number of elements
+			size_type	size() const;
+			// returns the max number of elements a vector can hold
+			size_type	max_size() const;
+			// requests enough space for at least 'cap' elements
+			// only reallocating if capacity is less than 'cap'
+			void		reserve(size_type cap);
+			// returns number of elements container can hold before needing to reallocate
+			// is necessary (done automaticlly by container)
+			// this is not always equal to caontainer size
+			size_type	capacity() const;
+
+
 		private:
 			size_t _fill_insert(pointer pos, size_type count, T const& val);
 			template<class Integer>
 			void _range_dispatch(Integer n, Integer value, ft::true_type);
 			template<class InputIterator>
 			void _range_dispatch(InputIterator n, InputIterator value, ft::false_type);
+			void	_reallocate(size_type new_size);
 	};
 }
 

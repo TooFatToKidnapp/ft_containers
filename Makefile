@@ -2,7 +2,7 @@ NAME = Containers
 
 CC = c++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address -fsanitize=undefined
+FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
 
 OBJ = $(SRC:.cpp=.o)
 

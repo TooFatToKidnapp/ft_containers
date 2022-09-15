@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:01:38 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/13 17:07:05 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 11:28:05 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ namespace ft{
 	//common itt class defining nested typedefs which iterator classes can inherit to save work
 	//(one itt class for all the containers)
 	template<class Category, class T, class Distance = std::ptrdiff_t, class Pointer = T*, class Reference = T&>
-	class iterator{
+	class iterator {
 		public:
 			//categoty of the itt , must be one of the iterator category tags
 			typedef Category		iterator_category;
@@ -60,31 +60,34 @@ namespace ft{
 	//generic definition
 	template<class Itt>
 	struct iterator_traits{
-		typedef typename Itt::difference_type		difference_type;
-		typedef typename Itt::value_type			value_type;
-		typedef typename Itt::pointer				pointer;
-		typedef typename Itt::reference				reference;
-		typedef typename Itt::iterator_category		iterator_category;
+		public:
+			typedef typename Itt::difference_type		difference_type;
+			typedef typename Itt::value_type			value_type;
+			typedef typename Itt::pointer				pointer;
+			typedef typename Itt::reference				reference;
+			typedef typename Itt::iterator_category		iterator_category;
 	};
 
 	//T* specialization
 	template<class T>
 	struct iterator_traits<T*>{
-		typedef std::ptrdiff_t					difference_type;
-		typedef T								value_type;
-		typedef T*								pointer;
-		typedef T&								reference;
-		typedef ft::random_access_iterator_tag	iterator_categoty;
+		public:
+			typedef std::ptrdiff_t					difference_type;
+			typedef T								value_type;
+			typedef T*								pointer;
+			typedef T&								reference;
+			typedef ft::random_access_iterator_tag	iterator_categoty;
 	};
 
 	//const T* specialization
 	template<class T>
 	struct iterator_traits<T const*>{
-		typedef std::ptrdiff_t					difference_type;
-		typedef T								value_type;
-		typedef T const*						pointer;
-		typedef T const&						reference;
-		typedef ft::random_access_iterator_tag	iterator_categoty;
+		public:
+			typedef std::ptrdiff_t					difference_type;
+			typedef T								value_type;
+			typedef T const*						pointer;
+			typedef T const&						reference;
+			typedef ft::random_access_iterator_tag	iterator_categoty;
 	};
 
 	template <class input_itt>
@@ -96,7 +99,7 @@ namespace ft{
 				res++;
 			}
 			return res;
-		};
+		}
 
 } // namespace ft
 

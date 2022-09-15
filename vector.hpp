@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 09:18:55 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 10:24:45 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,17 @@ namespace ft
 			template<class InputIterator>
 			size_t	_range_copy_forward(iterator pos, InputIterator first, InputIterator last);
 	};
-}
+
+	//non member functions overloads
+		//relational operators
+
+			// template<class T, class Alloc>
+			// bool operator=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+			// 	return (vec1.size() == vec2.size());
+			// }
+
+
+}// namespace ft
 
 #include "vector.ipp"
 

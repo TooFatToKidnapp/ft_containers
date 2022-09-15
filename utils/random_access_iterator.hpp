@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:17:12 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 09:48:53 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 11:32:00 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ namespace ft {
 
 		protected:
 			pointer _current;
+
 		public:
 		// constructors and destructors
 			// default constructor

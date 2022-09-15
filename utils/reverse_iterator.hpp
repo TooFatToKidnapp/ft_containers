@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:06:51 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/13 12:14:00 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 10:17:50 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ namespace ft {
 
 		public:
 			typedef Iterator								iterator_type;
-			typedef typename _traits_type::defference_type	difference_type;
+			typedef typename _traits_type::difference_type	difference_type;
 			typedef typename _traits_type::pointer			pointer;
 			typedef typename _traits_type::reference		reference;
 

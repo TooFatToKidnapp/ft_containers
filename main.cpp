@@ -12,5 +12,4 @@ int main()
 	ft::vector<int>::const_reverse_iterator itt = vec.rbegin();
 	for(; itt != vec.rend(); itt++)
 		std::cout << "here " <<*itt << "\n";
-
 }

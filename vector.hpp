@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 10:24:45 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 17:45:05 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ namespace ft
 			//member functions
 		public:
 		// constructors and assignment operators
-			// default: empty container (only runs if its explicitly calld)
+			// default: empty container (only runs if its explicitly called)
 			explicit vector(Alloc const & alloc = Alloc());
 			//fill container with n elem, each are a copy of val
 			explicit vector(size_type n, T const &val = T(),
@@ -163,6 +163,7 @@ namespace ft
 			void	_destroy_until(iterator start, iterator end);
 			template<class InputIterator>
 			size_t	_range_copy_forward(iterator pos, InputIterator first, InputIterator last);
+
 	};
 
 	//non member functions overloads
@@ -172,7 +173,6 @@ namespace ft
 			// bool operator=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
 			// 	return (vec1.size() == vec2.size());
 			// }
-
 
 }// namespace ft
 

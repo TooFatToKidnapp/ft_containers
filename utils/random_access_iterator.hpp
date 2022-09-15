@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:17:12 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 11:32:00 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 17:40:28 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ namespace ft {
 
 		// op- must support mixed const / non const iterator param
 		template<class TL, class TR>
-		typename random_access_iterator<TL>::defference_type operator-(
+		typename random_access_iterator<TL>::difference_type operator-(
 			random_access_iterator<TL> const & start,
 			random_access_iterator<TR> const &end){
 				return start.base() - end.base();

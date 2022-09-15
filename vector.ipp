@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 09:29:09 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 16:42:09 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ ft::vector<T, Alloc>::vector(size_type n, T const &val, Alloc const &alloc){
 	this->_current_size = n;
 	this->_current_capacity = n;
 	try{
+		// allocate n objects with type T wiht out constructing them
+		// throws bad_alloc if it cannot allocate the total amount
 		this->_array = this->_alloc.allocate(n);
 		_fill_insert(this->_array, n, val);
 	}
@@ -59,12 +61,21 @@ ft::vector<T, Alloc>::vector(InputIterator first,
 
 template<class T, class Alloc>
 ft::vector<T, Alloc>::~vector(){
-	//need func to clear the vector
-
+	this->clear();
 	if(this->_array != NULL){
 		this->_alloc.deallocate(this->_array, this->_current_capacity);
 	}
 }
+
+// copy assifnment operator
+template<class T, class Alloc>
+ft::vector<T, Alloc> & ft::vector<T, Alloc>::operator=(const vector &obj){
+	if (this != obj){
+		this->assign(obj.begin(), obj.end);
+	}
+	return *this;
+}
+
 
 //	copy constructor
 //	all the elms in obj are copied but any unused capasity is not.
@@ -376,7 +387,6 @@ typename ft::vector<T, Alloc>::iterator	ft::vector<T, Alloc>::erase(iterator fir
 }
 
 
-
 // Iterator invalidation: If reallocation happens, all invalidated, If not, only end().
 // Exceptions: strong guarantee, function has no effect.
 // May throw length_error if reallocation exceeds max_size.
@@ -522,7 +532,7 @@ void	ft::vector<T,Alloc>::_destroy_until(iterator end, iterator start){
 	if (start - end){
 		for (; end != start; end++) {
 			_alloc.destroy(&*end);
-			this->size -= 1;
+			this->_current_size -= 1;
 		}
 	}
 	return;

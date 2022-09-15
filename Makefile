@@ -14,16 +14,22 @@ LIB =	./vector.hpp\
 		./utils/random_access_iterator.hpp\
 		./utils/type_traits.hpp\
 
+
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIB)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+
+
+main :
+	$(CC) $(FLAGS) vec_test.cpp -o std_vector
 
 %.o : %.cpp $(LIB)
 	$(CC) $(FLAGS) -o $@ -c $<
 
 clean :
 	rm -fr $(NAME)
+	rm -fr std_vector
 
 fclean : clean
 	rm -fr $(OBJ)

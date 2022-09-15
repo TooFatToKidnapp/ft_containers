@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 17:51:10 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 09:18:55 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,13 +137,18 @@ namespace ft
 			// adds new element to end of vector, copying/moving contant if value to it
 			// increases the size by 1
 			// automatic reallocation is only triggerd if new size surpasses current capacity
-			void push_back(T const & value);
+			void	push_back(T const & value);
 			// removes and destroys last element , reducing size by 1
-			void pop_back();
-
-
-
-
+			void	pop_back();
+			//resize container to contain n elements
+			// if container size > 'count', container is reduced to count
+			// if count > container size the vector is expanded to count
+			// if 'val' id specified, new elems are initialized as copies of 'value'
+			void	resize(size_type count, value_type val = T());
+			// swaps content of container by content of 'other' container they have to be
+			// the same type
+			// size my differ, all iterators , references, pointers remain valid
+			void	swap(vector &other);
 
 		private:
 			size_t	_fill_insert(pointer pos, size_type count, T const& val);

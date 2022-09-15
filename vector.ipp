@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/14 17:54:53 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/15 09:29:09 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -402,12 +402,37 @@ void ft::vector<T, Alloc>::pop_back(){
 }
 
 
+// changes only the number of elements is the container, not its capacity
+// iterator invalidation if reallocation happens, all invalidated
+// if resizing to smaller, at point of destruction uncluding end()
+// exceptions: throws lenght_error if resized above max_size then function dose nothing
+template<class T, class Alloc>
+void	ft::vector<T,Alloc>::resize(size_type count, value_type val){
+	if (count > this->max_size())
+		throw std::length_error("vector::resize - count exceeds vector max_size");
+	else if (count < this->size())
+		_destroy_until(this->_array + count, this->_array + this->_current_size);
+	else {
+		this->reserve(count);
+		while (count > this->size())
+			push_back(val);
+	}
+}
 
+template<class T, class Alloc>
+void	ft::vector<T,Alloc>::swap(vector &other){
+	size_type	tmp_size		= other._current_size;
+	size_type	tmp_capacity	= other._current_capacity;
+	pointer		tmp_array		= other._array;
 
+	other._current_size			= this->_current_size;
+	other._current_capacity		= this->_current_capacity;
+	other._array				= this->_array;
 
-
-
-
+	this->_current_size			= tmp_size;
+	this->_current_capacity		= tmp_capacity;
+	this->_array				= tmp_array;
+}
 
 			//privat helper functions
 //	internal function called by fill constractor
@@ -485,8 +510,8 @@ void	ft::vector<T,Alloc>::_assign_range(InputIterator first, InputIterator last)
 	if (count == 0)
 		return ;
 	this->reserve(count);
-	//for (; first != last; ++first)
-		//push_back(*first); push_back not yet implemented
+	for (; first != last; ++first)
+		push_back(*first);
 }
 
 // internal function called bt resize, erase

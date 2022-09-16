@@ -3,20 +3,21 @@
 #include<iostream>
 
 using std::cout;
-
+using std::vector;
 
 int main(){
-	cout << "================std::vector test ==================\n";
-	std::vector<int> vec;
-	int i = 0;
-	for(; i < 10; i++)
-		vec.push_back(i + 2);
-	std::vector<int> tmp = vec;
-	std::vector<int>::iterator itt2 = tmp.begin();
-	std::vector<int>::iterator itt = vec.begin();
-	for(; itt != vec.end(); itt++, itt2++){
-		std::cout <<*itt << "\n";
-		std::cout <<*itt2 << "\n";
+	std::vector<int> vec(11, -1);
+	cout << vec.capacity() << "-- \n";
+	cout << vec.size() << "-- \n";
+	for(int i = 0; i < 10 ; i++){
+		vec.push_back(i*2);
 	}
-
+	cout << vec.capacity() << "-- \n";
+	cout << vec.size() << "-- \n";
+	std::vector<int>::iterator itt;
+	for(itt = vec.begin(); itt != vec.end() ; itt++){
+		cout << *itt << "\n";
+	}
+	cout << vec.capacity() << "-- \n";
+	cout << vec.size() << "-- \n";
 }

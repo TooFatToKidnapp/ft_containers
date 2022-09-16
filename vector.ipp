@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 16:42:09 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/16 11:27:50 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ ft::vector<T, Alloc>::~vector(){
 // copy assifnment operator
 template<class T, class Alloc>
 ft::vector<T, Alloc> & ft::vector<T, Alloc>::operator=(const vector &obj){
-	if (this != obj){
-		this->assign(obj.begin(), obj.end);
+	if (this != &obj){
+		this->assign(obj.begin(), obj.end());
 	}
 	return *this;
 }

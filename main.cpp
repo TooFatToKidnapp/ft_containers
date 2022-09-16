@@ -2,16 +2,17 @@
 #include "vector.hpp"
 
 using std::cout;
+using ft::vector;
 
 int main()
 {
 	ft::vector<int> vec;
-	int i = 0;
-	for(; i < 10; i++)
-		vec.push_back(i + 2);
-	ft::vector<int>::iterator itt = vec.end();
-	cout << vec.capacity() << "\n";
-	cout << vec.size() << "\n";
-	itt += 5;
-	cout << *itt << "\n";
+	for(int i = 0; i < 10 ; i++){
+		vec.push_back(i*2);
+	}
+
+	ft::vector<int>::iterator itt;
+	for(itt = vec.begin(); vec.end() != itt ; itt++){
+		cout << *itt << "\n";
+	}
 }

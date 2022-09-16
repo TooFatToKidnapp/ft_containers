@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:17:12 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 17:40:28 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/16 10:15:20 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ namespace ft {
 			// copy constructor
 			random_access_iterator(const random_access_iterator & obj) : _current(obj._current) {}
 			// assignment operator
-			random_access_iterator& operator=(random_access_iterator const &obj){
-				if (this != obj)
+			random_access_iterator& operator=(const random_access_iterator  &obj){
+				if (this != &obj)
 					this->_current = obj._current;
 				return *this;
 			}
@@ -163,8 +163,8 @@ namespace ft {
 
 
 		template<class T>
-		bool	operator!=(random_access_iterator<T> const &obj,
-			random_access_iterator<T> const &obj2){
+		bool	operator!=(const random_access_iterator<T>  &obj,
+			const random_access_iterator<T>  &obj2){
 				return obj.base() != obj2.base();
 			}
 

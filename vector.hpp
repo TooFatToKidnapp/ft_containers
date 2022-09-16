@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 17:45:05 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/16 13:40:56 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #include "./utils/type_traits.hpp"
 #include "./utils/random_access_iterator.hpp"
 #include "./utils/reverse_iterator.hpp"
+
+// problem with "ft::vector<T> *(vec.rend() - 1)"
 
 namespace ft
 {

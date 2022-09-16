@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/16 13:40:56 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/16 17:23:29 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #include "./utils/type_traits.hpp"
 #include "./utils/random_access_iterator.hpp"
 #include "./utils/reverse_iterator.hpp"
+#include "./utils/equal.hpp"
 
 // problem with "ft::vector<T> *(vec.rend() - 1)"
 
@@ -170,10 +171,20 @@ namespace ft
 
 	//non member functions overloads
 		//relational operators
+			template<class T, class Alloc>
+			bool operator==(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+				return (vec1.size() == vec2.size()
+						&& ft::equal(vec1.begin(), vec1.end(), vec2.begin()));
+			}
+		// based on == operator
+			template<class T, class Alloc>
+			bool operator!=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+				return !(vec1 == vec2);
+			}
 
 			// template<class T, class Alloc>
-			// bool operator=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
-			// 	return (vec1.size() == vec2.size());
+			// bool operator<(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+			// 	 need lexicographical comparison
 			// }
 
 }// namespace ft

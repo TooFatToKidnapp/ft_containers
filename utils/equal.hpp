@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 13:14:06 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/16 13:57:47 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/16 15:20:11 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ bool equal(Itt1 first1, Itt1 last1, Itt2 first2,
 		if (*first1 != *first2)
 			return false;
 	}
-	return true
+	return true;
 }
 
 template<class Itt1, class Itt2, class BinaryPredicate>
@@ -38,7 +38,7 @@ bool equal(Itt1 first1, Itt1 last1, Itt2 first2, BinaryPredicate pred,
 		if (!pred(*first1, *first2))
 			return false;
 	}
-	return true
+	return true;
 }
 
 } // namespace ft

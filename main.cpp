@@ -1,60 +1,57 @@
 #include "allocator.hpp"
 #include "vector.hpp"
 #include <list>
+#include<vector>
 
 using std::cout;
 using ft::vector;
 
-bool bothEvenOrOdd (int elem1, int elem2)
+void printCollection (const std::list<int>& l)
 {
-	return elem1 % 2 == elem2 % 2;
+	std::list<int>::const_iterator itt = l.begin();
+	for(; itt != l.end(); itt++){
+		cout << *itt << " ";
+	}
+	cout << "\n";
+}
+
+bool check(int one, int two){
+	if (one > two)
+		return true;
+	return false;
+}
+
+bool lessForCollection (const std::list<int>& l1, const std::list<int>& l2)
+{
+return ft::lexicographical_compare
+(l1.cbegin(), l1.cend(), // first range
+l2.cbegin(), l2.cend()); // second range
 }
 int main()
 {
-// vector<int> coll1;
-// std::list<int> coll2;
-// for(int i = 1; i < 8; i++){
-// 	coll1.push_back(i * 3);
-// 	cout << coll1[i - 1] << " ";
-// }
-// cout << "\n";
-// for(int i = 1; i < 8; i++){
-// 	coll2.push_back(i*2);
-// }
-// std::list<int>::iterator itt = coll2.begin();
-
-// for(; itt != coll2.end(); itt++){
-// 	cout << *itt << " ";
-// }
-// cout << "\n";
-
-// // check whether both collections are equal
-// if (ft::equal (coll1.begin(), coll1.end(), // first range
-// 	coll2.begin())) { // second range
-// 	cout << "coll1 == coll2" << std::endl;
-// }
-// else {
-// 	cout << "coll1 != coll2" << std::endl;
-// }
-// // check for corresponding even and odd elements
-// if (ft::equal (coll1.begin(), coll1.end(), // first range
-// 	coll2.begin(), // second range
-// 	bothEvenOrOdd)) { // comparison criterion
-// 	cout << "even and odd elements correspond" << std::endl;
-// }
-// else {
-// 	cout << "even and odd elements do not correspond" << std::endl;
-// }
-
-vector<int> vec;
-vec.push_back(10);
-vec.push_back(20);
-vector<int> vec2;
-vec2.push_back(10);
-vec2.push_back(20);
-if (vec != vec2)
-	cout << "true\n";
-else
-	cout << "false\n";
-
+std::list<int> c1, c2, c3, c4;
+// fill all collections with the same starting values
+for(int i = 0; i < 5 ; i++){
+	c1.push_back(-1);
 }
+c4 = c3 = c2 = c1;
+// and now some differences
+c1.push_back(7);
+c3.push_back(2);
+c3.push_back(0);
+c4.push_back(2);
+// create collection of collections
+std::vector<std::list<int> > cc;
+cc.insert ( cc.begin(), { c1, c2, c3, c4, c3, c1, c4, c2 } );
+// print all collections
+for_each (cc.cbegin(), cc.cend(),
+printCollection);
+cout << std::endl;
+// sort collection lexicographically
+sort (cc.begin(), cc.end(), // range
+lessForCollection); // sorting criterion
+// print all collections again
+for_each (cc.cbegin(), cc.cend(),
+printCollection);
+}
+

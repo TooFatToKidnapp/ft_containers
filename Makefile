@@ -2,7 +2,7 @@ NAME = Containers
 
 CC = c++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -std=c++11 -g -fsanitize=address
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -13,13 +13,15 @@ LIB =	./vector.hpp\
 		./utils/iterator.hpp\
 		./utils/random_access_iterator.hpp\
 		./utils/type_traits.hpp\
+		./utils/equal.hpp\
+		./utils/lexicographical_compare.hpp\
+		./utils/reverse_iterator.hpp\
 
 
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIB)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-
 
 main :
 	$(CC) $(FLAGS) vec_test.cpp -o std_vector

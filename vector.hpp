@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/16 17:23:29 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/17 14:12:42 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 #include "./utils/random_access_iterator.hpp"
 #include "./utils/reverse_iterator.hpp"
 #include "./utils/equal.hpp"
+#include "./utils/lexicographical_compare.hpp"
 
 // problem with "ft::vector<T> *(vec.rend() - 1)"
 

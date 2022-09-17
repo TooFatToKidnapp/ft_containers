@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/17 14:12:42 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/17 16:04:40 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,11 +182,36 @@ namespace ft
 			bool operator!=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
 				return !(vec1 == vec2);
 			}
+		// returns true if vec1 < vec2
+		// elems must be comparable wiht '<'
+			template<class T, class Alloc>
+			bool operator<(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+				return (ft::lexicographical_compare(vec1.begin(), vec1.end(), vec2.begin(), vec2.end()));
+			}
 
-			// template<class T, class Alloc>
-			// bool operator<(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
-			// 	 need lexicographical comparison
-			// }
+			template<class T, class Alloc>
+			bool operator<=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+				return !(vec2 < vec1);
+			}
+			template<class T, class Alloc>
+			bool operator<(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+				return (vec2 < vec1);
+			}
+
+			template<class T, class Alloc>
+			bool operator<=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+				return !(vec1 < vec2);
+			}
+
+			// overloding the member function 'swap' that improves it preformence
+			// by manually transferring ownership over their assets to the other
+			// container (container exchange references to there data, with out having
+			// to copy or move data)
+			template<class T, class Alloc>
+			void swap(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+				vec1.swap(vec2);
+			}
+
 
 }// namespace ft
 

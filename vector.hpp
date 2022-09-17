@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/17 16:04:40 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:38:04 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 namespace ft
 {
-	template<typename T, class Alloc = std::allocator<T> >
+	template<typename T, class Alloc = custom_Allocator<T> >
 	class vector {
 
 		public:
@@ -57,7 +57,7 @@ namespace ft
 
 			//member functions
 		public:
-		// constructors and assignment operators
+		// constructors and assignment operator
 			// default: empty container (only runs if its explicitly called)
 			explicit vector(Alloc const & alloc = Alloc());
 			//fill container with n elem, each are a copy of val
@@ -194,12 +194,12 @@ namespace ft
 				return !(vec2 < vec1);
 			}
 			template<class T, class Alloc>
-			bool operator<(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+			bool operator>(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
 				return (vec2 < vec1);
 			}
 
 			template<class T, class Alloc>
-			bool operator<=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
+			bool operator>=(vector<T,Alloc> const &vec1, vector<T,Alloc> const &vec2){
 				return !(vec1 < vec2);
 			}
 

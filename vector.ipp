@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/16 11:27:50 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/17 19:42:47 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ template<class InputIterator>
 ft::vector<T, Alloc>::vector(InputIterator first,
 		InputIterator last, Alloc const &alloc) : _alloc(alloc){
 	try{
-		//checks if integral ype received. if so, its not an iterator.
+		//checks if integral type received. if so, its not an iterator.
 		typedef typename ft::is_integral<InputIterator>::type	Integral;
 		_range_dispatch(first, last, Integral());
 	}
@@ -475,6 +475,24 @@ void	ft::vector<T, Alloc>::_range_dispatch(Integer n, Integer value, ft::true_ty
 	_current_capacity = _current_size;
 	_fill_insert(_array, count, value);
 }
+
+// iterator specialization
+template<class T, class Alloc>
+template<class InputIterator>
+void	ft::vector<T,Alloc>::_range_dispatch(InputIterator first, InputIterator last, ft::false_type){
+	try{
+		this->_current_size = ft::distance(first, last);
+		this->_current_capacity = this->_current_size;
+		this->_array = this->_alloc.allocate(this->_current_size);
+		_range_copy_forward(this->begin(), first, last);
+	}
+	catch(...){
+		clear();
+		throw;
+	}
+}
+
+
 
 // internal function called by reserve ans insert
 // reallocates array to new_cap size, copying over any existing elements

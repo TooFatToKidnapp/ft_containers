@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:32:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/11 10:16:31 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/17 17:43:20 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ namespace ft{
 	// used as the base class for trait type
 	// T is type of integeral contant, v is the value
 	template <class T, T v>
-	struct integeral_constant
+	struct integral_constant
 	{
 		static const	T							value = v;
 		typedef			T							value_type;
-		typedef			integeral_constant<T, v>	type;
+		typedef			integral_constant<T, v>		type;
 
 		operator T(){
 			return v;
@@ -49,8 +49,8 @@ namespace ft{
 	// member functions operator bool & operator()
 	// member types 'value_type' and type
 
-	typedef integeral_constant<bool , true> true_type;
-	typedef integeral_constant<bool , false> false_type;
+	typedef integral_constant<bool , true> true_type;
+	typedef integral_constant<bool , false> false_type;
 
 	// check if T is integral type
 	// provide member constant 'value' which is equal to true if 'T' is

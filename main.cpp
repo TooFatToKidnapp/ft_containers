@@ -2,23 +2,23 @@
 #include "vector.hpp"
 #include <list>
 #include<vector>
-
+#include <limits>
 using std::cout;
 using ft::vector;
+#ifndef somthing
+#define somthing
+#endif
 
 int main()
 {
-	vector<int> vec(10, -1);
-	vec.push_back(9);
-	vec.push_back(8);
-	vec.push_back(7);
-	vec.push_back(6);
-	vec.push_back(5);
-	vector<int> vec2(vec.begin(), vec.end());
-	cout << vec2.size() << " " << vec2.capacity() << "\n";
-	for(vector<int>::iterator it = vec2.begin(); it != vec2.end(); it++ ){
-		cout << *it << "\n";
-	}
+	vector<int> vec;
+	vec.push_back(10);
+	vec.push_back(20);
+	vec.push_back(30);
+	vec.push_back(40);
+	vec.push_back(50);
+
+	vector<int>::reverse_iterator it = vec.rend() -1 ;
+	cout << *it << "\n";
+
 }
-
-

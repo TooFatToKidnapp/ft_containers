@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 10:06:51 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/15 10:17:50 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/18 12:44:13 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ namespace ft {
 		// returns result of dereferencing this.
 		reference operator*() const{
 			Iterator tmp = _current;
-			return *(--tmp);
+			return *--tmp;
 		}
 		//return a pointer to the value at _current (if dereferenceable)
 		pointer operator->() const {
@@ -83,7 +83,7 @@ namespace ft {
 		}
 		// return an iterator referring to _current + n
 		reverse_iterator operator-(difference_type n)const {
-			return reverse_iterator(_current - n);
+			return reverse_iterator(_current + n);
 		}
 		// --i
 		reverse_iterator &operator--() {
@@ -93,7 +93,8 @@ namespace ft {
 		// i--
 		reverse_iterator operator--(int) {
 			reverse_iterator tmp = *this;
-			return *(++tmp);
+			++_current;
+			return tmp;
 		}
 		// moves iterator n steps
 		reverse_iterator &operator-=(difference_type n) {
@@ -103,7 +104,7 @@ namespace ft {
 
 		protected:
 			Iterator	_current;
-	};
+};
 	// non member functions
 	template<class T>
 	bool operator==(reverse_iterator<T> const & left,

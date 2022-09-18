@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/17 19:38:04 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/18 12:46:25 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 #include "./utils/reverse_iterator.hpp"
 #include "./utils/equal.hpp"
 #include "./utils/lexicographical_compare.hpp"
-
-// problem with "ft::vector<T> *(vec.rend() - 1)"
 
 namespace ft
 {

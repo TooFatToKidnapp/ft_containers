@@ -1,6 +1,6 @@
-NAME = Containers
+NAME = ft_containers
 
-CC = c++
+CC = Clang++
 
 FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
 
@@ -8,14 +8,17 @@ OBJ = $(SRC:.cpp=.o)
 
 SRC =	main.cpp
 
-LIB =	./vector.hpp\
-		./vector.ipp\
+LIB =	./containers/vector.hpp\
+		./containers/vector.ipp\
+		./containers/stack.ipp\
+		./containers/stack.ipp\
 		./utils/iterator.hpp\
 		./utils/random_access_iterator.hpp\
 		./utils/type_traits.hpp\
 		./utils/equal.hpp\
 		./utils/lexicographical_compare.hpp\
 		./utils/reverse_iterator.hpp\
+
 
 
 all : $(NAME)

@@ -6,12 +6,14 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:32:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/17 17:43:20 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/19 17:56:25 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPE_TRAITS_HPP
 #define TYPE_TRAITS_HPP
+
+// p 122
 
 namespace ft{
 	// primary template for enable_if

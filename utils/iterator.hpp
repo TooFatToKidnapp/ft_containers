@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 16:01:38 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/17 18:47:52 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/20 13:56:59 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ namespace ft{
 
 	//traits class defining propeties of iterators
 	//generic definition
+	// itt == type of iterator
 	template<class Itt>
 	struct iterator_traits{
 		public:
@@ -68,7 +69,7 @@ namespace ft{
 			typedef typename Itt::iterator_category		iterator_category;
 	};
 
-	//T* specialization
+	//T* specialization (pointer)
 	template<class T>
 	struct iterator_traits<T*>{
 		public:

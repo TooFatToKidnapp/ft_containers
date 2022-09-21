@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:17:12 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/16 10:15:20 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/21 14:40:38 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,8 +142,8 @@ namespace ft {
 			}
 
 		template<class T>
-		random_access_iterator<T>operator+(
-			typename random_access_iterator<T>::defference_type n,
+		random_access_iterator<T> operator+(
+			typename random_access_iterator<T>::difference_type n,
 			random_access_iterator<T> const & i){
 				return random_access_iterator<T>(i.base() + n);
 			}

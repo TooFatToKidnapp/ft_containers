@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:17:12 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/21 14:40:38 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/21 15:31:14 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ namespace ft {
 
 		//return distance in address between 2 it
 		template<class T>
-		typename random_access_iterator<T>::difference operator-(
+		typename random_access_iterator<T>::difference_type operator-(
 			random_access_iterator<T> const &start,
 			random_access_iterator<T> const end){
 			return start.base() - end.base();
@@ -136,7 +136,7 @@ namespace ft {
 		// op- must support mixed const / non const iterator param
 		template<class TL, class TR>
 		typename random_access_iterator<TL>::difference_type operator-(
-			random_access_iterator<TL> const & start,
+			random_access_iterator<TL> const &start,
 			random_access_iterator<TR> const &end){
 				return start.base() - end.base();
 			}

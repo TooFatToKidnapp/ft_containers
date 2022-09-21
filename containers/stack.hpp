@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 17:17:11 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/21 12:49:33 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/21 15:17:37 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include"./vector.hpp"
 
 namespace ft {
-	template<class T, class Container = ft::vector<T> >
+	template<class T, class Container = std::vector<T> >
 	class stack {
 		public:
 			typedef Container							container_type;

@@ -6,15 +6,14 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/20 17:15:43 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/22 13:58:03 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_HPP
 #define VECTOR_HPP
 
-#include <iostream>
-#include <algorithm> // max, mix, fill_n
+#include <algorithm> // max, mix
 #include <memory> // std::allocator
 #include <cstddef> // ptrdiff_t / size_t
 #include <stdexcept> // std::out_of_range

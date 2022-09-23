@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/20 13:57:20 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/23 19:34:26 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,7 +329,7 @@ void ft::vector<T,Alloc>::insert(iterator pos, InputIterator first, InputIterato
 			// array to avoid invalid read issues
 			new_size += _range_copy_forward(tmp, begin(), begin() + offset);
 			new_size += _range_copy_forward(tmp + offset, first, last);
-			new_size += _range_copy_forward(tmp + offset, count, begin() + offset, end());
+			new_size += _range_copy_forward(tmp + offset + count, begin() + offset, end());
 
 			_destroy_until(this->begin(), this->end());
 			_alloc.deallocate(this->_array, this->_current_capacity);

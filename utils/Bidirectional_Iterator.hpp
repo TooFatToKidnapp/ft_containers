@@ -6,12 +6,12 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:28:42 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/22 16:42:48 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/22 18:46:09 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BIDIRECTIONALITERATOR_HPP
-#define BIDIRECTIONALITERATOR_HPP
+#ifndef BIDIRECTIONAL_ITERATOR_HPP
+#define BIDIRECTIONAL_ITERATOR_HPP
 
 #include "./iterator.hpp" // iterator tags
 

@@ -36,3 +36,8 @@ https://anderberg.me/2016/07/04/c-custom-iterators/
 The C++Standard Library - 2nd Edition.pdf //page 434
 
 https://azrael.digipen.edu/~mmead/www/Courses/CS270/STLImplementations.html
+
+
+enable_if :
+https://eli.thegreenplace.net/2014/sfinae-and-enable_if/
+https://www.youtube.com/watch?v=mNxAqLVIaW0&t=672s

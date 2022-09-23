@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/22 16:11:05 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/22 18:47:05 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <functional> //std::less
 #include <stdexcept> //std::out_of_range
 #include "../utils/pair.hpp"
+#include "../utils/Bidirectional_Iterator.hpp"
 
 namespace ft{
 

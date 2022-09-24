@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:32:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/19 17:56:25 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/24 17:57:22 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ namespace ft{
 	// primary template for enable_if
 	// defines a member typedef 'type'  if boolean constant b is true
 
-	template<bool B, typename T= void>
+	template<bool B, typename T = void>
 	struct enable_if
 	{};
 
@@ -115,6 +115,18 @@ namespace ft{
 
 	template<>
 	struct is_integral<unsigned long long> : public ft::true_type
+	{};
+
+	template<>
+	struct is_integral<char16_t> : public ft::true_type
+	{};
+
+	template<>
+	struct is_integral<char32_t> : public ft::true_type
+	{};
+
+	template<>
+	struct is_integral<signed char> : public ft::true_type
 	{};
 
 } // namespace ft

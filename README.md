@@ -41,3 +41,5 @@ https://azrael.digipen.edu/~mmead/www/Courses/CS270/STLImplementations.html
 enable_if :
 https://eli.thegreenplace.net/2014/sfinae-and-enable_if/
 https://www.youtube.com/watch?v=mNxAqLVIaW0&t=672s
+
+https://learn.microsoft.com/en-us/cpp/standard-library/enable-if-class?view=msvc-170

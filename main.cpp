@@ -17,29 +17,11 @@ using std::map;
 #define somthing
 #endif
 
-// #define __cplusplus 199711L
-
-template<class T >
-typename ft::enable_if<!ft::is_integral<T>::value>::type fun(T a)
-{
-
-	cout << "is integral " ;
-	return a;
-}
-
-// template<class T>
-// typename ft::enable_if<!ft::is_integral<T>::value>::type fun(T a)
-// {
-// 	cout << "not integral "
-// 	return a;
-// }
-
 int main(){
-
-	//cout << fun(12);
-	//cout << fun(1.1);
-	cout << std::boolalpha;
-	cout << "char: " << ft::is_integral< unsigned long int>::value << "\n";
-	cout << "char: " << std::is_integral<unsigned long int>::value << "\n";
-
+	vector<int> vec;
+	vec.insert(vec.begin(), 5, 6);
+	for (vector<int>::iterator it = vec.begin(); it != vec.end(); ++it){
+		cout << *it << "\n";
+	}
+	return 0;
 }

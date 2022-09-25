@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:29:55 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/23 19:29:36 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/09/25 14:07:40 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ namespace ft
 			template<class Integer>
 			void	_range_dispatch(Integer n, Integer value, ft::true_type);
 			template<class InputIterator>
-			void	_range_dispatch(InputIterator n, InputIterator value, ft::false_type);
+			void	_range_dispatch (InputIterator n, InputIterator value, ft::false_type);
 			void	_reallocate(size_type new_size);
 			void	_assign_fill(size_type count, const T& value);
 			template<class InputIterator>

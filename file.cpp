@@ -76,19 +76,105 @@ class BST {
 
 		}
 		void _RemoveNode(int key, node *ptr){
-			if (ptr != NULL) {
-				node *tmp = ReturnNode(key);
-				if (tmp == NULL){
-					std::cout << "node with the key " << key << " dose not exist\n";
+			if (root != NULL) {
+				if (root->data == key)
+					RemoveRoot();
+				else {
+					if (key < ptr->data && ptr->left != NULL){
+						if (ptr->left->data == key){
+							RemoveElm(ptr, ptr->left, true); // true == passing left child , false == passing right child
+						}
+						else
+							_RemoveNode(key, ptr->left);
+					}
+					else if (key > ptr->data && ptr->right != NULL){
+						if (ptr->right->data == key){
+							RemoveElm(ptr, ptr->right, false); // true == passing left child , false == passing right child
+						}
+						else
+							_RemoveNode(key, ptr->right);
+					}
+					else
+						std::cout << "the key " << key << "was not found in the tree\n";
 				}
-				node *tmp2 = new node();
-				tmp2->left = tmp->left;
-				tmp2->right = tmp->right;
-				delete tmp;
-				
 			}
 			else
-				std::cout << "tree is empty\n";
+				std::cout << "empty tree\n";
+		}
+		void RemoveElm(node * parent, node *target, bool is_left){
+			if (root != NULL) {
+				int target_data = target->data;
+				int Smallest_right_subtree;
+				// target got no children
+				if (!target->left && !target->right){
+					if (is_left == true){
+						parent->left = NULL;
+					}
+					else
+						parent->right = NULL;
+					delete target;
+				}
+				// target got one child
+				else if (!target->left && target->right){
+					if (is_left == true)
+						parent->left = target->right;
+					else
+						parent->right = target->right;
+					target->right = NULL;
+					delete target;
+				}
+				else if (target->left && !target->right){
+					if (is_left == true)
+						parent->left = target->left;
+					else
+						parent->right = target->left;
+					target->left = NULL;
+					delete target;
+				}
+				// target got 2 children
+				else {
+					Smallest_right_subtree = _FinedSmallest(target->right);
+					_RemoveNode(Smallest_right_subtree, target);
+					target->data = Smallest_right_subtree;
+				}
+			}
+		}
+		void RemoveRoot() {
+			if (root != NULL){
+				node *tmp = root;
+				int smallest_right_subtree;
+				// root got no children
+				if (!root->left && !root->right) {
+					delete root;
+					root = NULL;
+				}
+				// root got only one child
+				else if (!root->left && root->right){
+					root = root->right;
+					delete tmp;
+				}
+				else if (root->left && !root->right){
+					root = root->left;
+					delete tmp;
+				}
+				// root has 2 children
+				else {
+					smallest_right_subtree = _FinedSmallest(root->right);
+					_RemoveNode(smallest_right_subtree, root);
+					root->data = smallest_right_subtree;
+
+				}
+			}
+		}
+		void _RemoveSubTree(node *ptr){
+			if (ptr != NULL){
+				if (ptr->left != NULL)
+					_RemoveSubTree(ptr->left);
+				if (ptr->right != NULL)
+					_RemoveSubTree(ptr->right);
+				std::cout << ptr->data << "\n";
+				delete ptr;
+			}
 		}
 	public:
 	BST() {
@@ -132,6 +218,9 @@ class BST {
 	void RemoveNode(int key){
 		_RemoveNode(key, root);
 	}
+	~BST() {
+		_RemoveSubTree(root);
+	}
 };
 
 int main(){
@@ -140,6 +229,10 @@ int main(){
 	for (int i = 0 ; i < 10; i++){
 		tree.AddNode(tab[i]);
 	}
-	std::cout << tree.FinedSmallest() << "\n";
 	tree.print();
+	tree.RemoveNode(10);
+	std::cout << tree.ReturnRootKey() << "\n";
+	tree.~BST();
+	tree.print();
+
 }

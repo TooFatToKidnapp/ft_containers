@@ -1,6 +1,7 @@
 #include "./containers/vector.hpp"
 #include "./containers/stack.hpp"
 #include "./utils/pair.hpp"
+#include "./utils/rb_node.hpp"
 #include <list>
 #include <vector>
 #include <map>

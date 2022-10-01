@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 17:56:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/01 16:04:05 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/01 17:48:59 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ namespace ft {
 
 			rb_colour	colour;
 
-			Node(value_type data, Node* parent, Node* left, Node* right, color clr)
+			Node(value_type data, Node* parent, Node* left, Node* right, rb_colour clr)
 				: data(data), parent(parent), left(left), right(right), colour(clr) {}
 	};
 

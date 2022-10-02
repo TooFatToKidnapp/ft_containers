@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/01 18:53:33 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/02 15:42:03 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ namespace ft {
 			size_type		_size;
 
 		public:
-			RBT(const key_compare &comp = key_compare(), const alloctor_type &alloc = allocator_type())
+			RBT(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type())
 				: _comp(comp), _alloc(alloc), _size(0) {
 					_nil = _alloc.allocate(1);
-					_alloc.construct(_nill, node_type(value_type(), NULL, NULL, NULL, BLACK));
+					_alloc.construct(_nil, node_type(value_type(), NULL, NULL, NULL, BLACK));
 					_root = _nil;
 				}
 
 			~RBT() {
 				// TODO: add recursive fun to clear the tree (virtual ???)
 				_alloc.destroy(_nil);
-				_alloc.dealocate(_nil, 1);
+				_alloc.deallocate(_nil, 1);
 			}
 
 			node_ptr	getRoot() const {
@@ -141,6 +141,99 @@ namespace ft {
 				node->parent = tmp;
 			}
 
+			node_ptr	InsertNode(const value_type &data) {
+				node_ptr node;
+				node = _alloc.allocate(1);
+				_alloc.construct(node, node_type(data, NULL, _nil, _nil, RED));
+
+				node_ptr y = NULL;
+				node_ptr x = _root;
+
+				while (x != _nil) // find nodes natural palcement
+				{
+					y = x;
+					if (_comp(get_key_from_val()(node->data), get_key_from_val()(x->data)))
+						x = x->left;
+					else if (_comp(get_key_from_val()(x->data), get_key_from_val()(node->data)))
+						x = x->right;
+					else { // x->data == data;
+						_alloc.destroy(node);
+						_alloc.deallocate(node, 1);
+						return _nil;
+					}
+				}
+				node->parent = y;
+				if (y == NULL)
+					this->_root = node;
+				else if (_comp(get_key_from_val()(node->data), get_key_from_val()(y->data)))
+					y->left = node;
+				else
+					y->right = node;
+				this->_size++;
+				// if new node is a root then return
+				if (y == NULL) {
+					node->colour = BLACK;
+					return (this->_root);
+				}
+				if (node->parent->parent == NULL)
+					return node;
+				// check if tree needs fixing then fix it
+				FixInsert(node);
+				return node;
+			}
+
+		private:
+		// tree helper functions
+			void	FixInsert(node_ptr node) {
+				node_ptr x;
+				while (node->parent->colour == RED) {
+					if (node->parent == node->parent->right) // parent is gp's right child
+					{
+						x = node->parent->parent->left; // uncel is left
+						if (x->colour == RED) // if unc is also red
+						{
+							x->colour = BLACK;
+							node->parent->colour = BLACK;
+							node->parent->parent->colour = RED;
+							node = node->parent->parent;
+						}
+						else {
+							if (node == node->parent->left) // node is left child
+							{
+								node = node->parent;
+								right_rotate(node); // new node is old parent
+							}
+							node->parent->colour = BLACK;
+							node->parent->parent->colour = RED;
+							left_rotate(node->parent->parent);
+						}
+					}
+					else { // parent id gs's left child (mirror case)
+						x = node->parent->parent->right; // uncle
+						if (x->colour == RED) {
+							// mirror case
+							x->colour = BLACK;
+							node->parent->colour = BLACK;
+							node->parent->parent->colour = RED;
+							node = node->parent->parent;
+						}
+						else {
+							if (node == node->parent->right) {
+								// mirror case
+								node = node->parent;
+								left_rotate(node);
+							}
+							// mirror case
+							node->parent->colour = BLACK;
+							node->parent->parent->colour = RED;
+							right_rotate(node->parent->parent);
+						}
+					}
+					if (node == _root)
+						break;
+				}
+				_root->colour = BLACK;
+			}
 
 	};
 

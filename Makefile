@@ -2,7 +2,7 @@ NAME = ft_containers
 
 CC = Clang++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -std=c++98 -g #-fsanitize=address
 
 OBJ = $(SRC:.cpp=.o)
 

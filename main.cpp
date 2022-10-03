@@ -31,20 +31,17 @@ ft::pair<int ,std::string> make_pair(int i, std::string str) {
 	return var;
 }
 
+
 int main(){
 
 	ft::RBT<int , ft::pair<int, std::string> , get_key<ft::pair<int, std::string>, int > > tree;
 
-	int tab[5] = {6, 100, 0, -25, 7};
-	std::string str[5] = {"hello", "world", "xd", "test", "somthing"};
-	for(int i = 0; i < 5; i++)
+	int tab[6] = {6, 100, 0, -25, 7, 1};
+	std::string str[6] = {"hello", "world", "xd", "test", "somthing", "pajlada"};
+	for(int i = 0; i < 6; i++)
 		tree.InsertNode(make_pair(tab[i], str[i]));
-	cout << tree.getRoot()->data.first << " " <<tree.getRoot()->data.second << "\n";
-	cout << "smallest val in tree "<< tree.getRoot()->data.first << " " << tree.getRoot()->data.second << "\n";
-	tree.right_rotate(tree.getRoot());
-	cout << "smallest val in tree "<< tree.getRoot()->data.first << " " << tree.getRoot()->data.second << "\n";
-	if (tree.getRoot()->left == tree.getNil()){
-		cout << "true\n";
-	}
+	//tree.left_rotate(tree.getRoot());
+	tree.Print();
+	cout << tree.SearchTree(55)->data.first << " " << tree.SearchTree(55)->data.second <<"\n" ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/02 15:42:03 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/03 11:37:42 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,8 +181,46 @@ namespace ft {
 				FixInsert(node);
 				return node;
 			}
-
+			// bool DeleteNode(key_type key) {
+			// 	return _DeleteNode(key);
+			// }
+			void Print() {
+				_Print(this->_root);
+				std::cout << "\n";
+			}
+			node_ptr SearchTree(key_type key) const {
+				return _SearchTree(this->_root, key);
+			}
 		private:
+			node_ptr _SearchTree(node_ptr node, key_type key) const {
+				if (node == _nil)
+					return _nil;
+				if (key == get_key_from_val()(node->data))
+					return node;
+				if (node != _nil) {
+					if (_comp(key, get_key_from_val()(node->data)))
+						return _SearchTree(node->left, key);
+					return _SearchTree(node->right, key);
+				}
+				return _nil;
+			}
+			// bool _DeleteNode(key_type key) {
+			// 	// find the node containing the given key
+			// 	node_ptr z, x, y;
+
+			// 	z =
+			// }
+			void _Print(node_ptr node) {
+				if (_root != _nil) {
+					if (node->left != _nil){
+						_Print(node->left);
+					}
+					std::cout <<"[" <<node->data.first << "," << node->data.second << "] ";
+					if (node->right != _nil){
+						_Print(node->right);
+					}
+				}
+			}
 		// tree helper functions
 			void	FixInsert(node_ptr node) {
 				node_ptr x;

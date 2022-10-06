@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/03 12:50:17 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/06 12:51:12 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,9 +181,6 @@ namespace ft {
 				FixInsert(node);
 				return node;
 			}
-			// bool DeleteNode(key_type key) {
-			// 	return _DeleteNode(key);
-			// }
 			void Print() {
 				_Print(this->_root);
 				std::cout << "\n";
@@ -191,7 +188,59 @@ namespace ft {
 			node_ptr SearchTree(key_type key) const {
 				return _SearchTree(this->_root, key);
 			}
+			bool DeleteNode(key_type key) {
+				return _DeleteNode(key);
+			}
 		private:
+			bool _DeleteNode(key_type key) {
+				// find the wanted node
+				node_ptr x,y,z;
+				z = SearchTree(key);
+				if (z == _nil)
+					return false;
+				// y is a save of the wanted node
+				y = z;
+				rb_colour y_clr_save = y->colour;
+				if (z->left == _nil) {
+					x = z->right;
+					rbSwap(z, z->right);
+				}
+				else if (z->right == _nil) { // mirror case
+					x = z->left;
+					rbSwap(z, z->left);
+				}
+				else { // seppressed node had 2 children and it replaced by the smallest in its right branch
+					y = minimum(z->right);
+					y_clr_save = y->colour;
+					x = y->right; // save the minnimums right btanch
+					if (y->parent == z)
+						x->parent = y;
+					else {
+						rbSwap(y, y->right); // replase min with its right btanch
+						y->right = z->right;
+						y->right->parent = y;
+					}
+					rbSwap(z,y); // replase z by the correct val
+					y->left = z->left;
+					y->left->parent = y;
+					y->colour = z->colour; // keep old z's color
+				}
+				_alloc.destroy(z);
+				_alloc.deallocate(z, 1);
+				_size--;
+				//if (y_clr_save == BLACK) // FIX
+					// fix_fun
+				return true;
+			}
+			void rbSwap(node_ptr node, node_ptr new_node) { // replase node with new_node
+				if (node->parent == NULL)
+					_root = new_node;
+				else if (node == node->parent->left)
+					node->parent->left = new_node;
+				else
+					node->parent->right = new_node;
+				new_node->parent = node->parent;
+			}
 			node_ptr _SearchTree(node_ptr node, key_type key) const {
 				if (node == _nil)
 					return _nil;
@@ -204,18 +253,12 @@ namespace ft {
 				}
 				return _nil;
 			}
-			// bool _DeleteNode(key_type key) {
-			// 	// find the node containing the given key
-			// 	node_ptr z, x, y;
-
-			// 	z =
-			// }
 			void _Print(node_ptr node) {
 				if (_root != _nil) {
 					if (node->left != _nil){
 						_Print(node->left);
 					}
-					std::cout <<"[" <<node->data.first << "," << node->data.second << "] ";
+					std::cout <<"[" <<node->data.first << "," << node->data.second << ","<< node->colour << "] ";
 					if (node->right != _nil){
 						_Print(node->right);
 					}

@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/22 18:47:05 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/04 15:25:31 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #define MAP_HPP
 
 #include <memory> //std::allocator
-#include <functional> //std::less
+#include <functional> //std::less a funny way of saying <
 #include <stdexcept> //std::out_of_range
 #include "../utils/pair.hpp"
 #include "../utils/Bidirectional_Iterator.hpp"

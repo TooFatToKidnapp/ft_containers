@@ -18,7 +18,6 @@ using std::map;
 #define somthing
 #endif
 
-
 template <class T, class Key>
 struct get_key : public std::unary_function<T, Key> {
 	const Key &operator()(const T &x) const {
@@ -26,24 +25,20 @@ struct get_key : public std::unary_function<T, Key> {
 	}
 };
 
-ft::pair<int ,std::string> make_pair(int i, std::string str) {
-	ft::pair<int ,std::string> var(i, str);
+ft::pair<std::string ,int> make_pair(int i, std::string str) {
+	ft::pair<std::string ,int > var(str, i);
 	return var;
 }
 
-int main(){
 
-	ft::RBT<int , ft::pair<int, std::string> , get_key<ft::pair<int, std::string>, int > > tree;
 
-	int tab[6] = {6, 100, 0, -25, 7, 1};
-	std::string str[6] = {"hello", "world", "xd", "test", "somthing", "pajlada"};
-	for(int i = 0; i < 6; i++)
-		tree.InsertNode(make_pair(tab[i], str[i]));
-	//tree.left_rotate(tree.getRoot());
+int main() {
+	int tab[6] = {125,548,-6,0,58,99};
+	std::string arr[6] = {"hello", "world", "somthing", "xd", ":)", ":)"};
+	ft::RBT<std::string , ft::pair<std::string, int> , get_key<ft::pair<std::string, int>, std::string > > tree;
+	for (int i = 0; i < 6; i++)
+		tree.InsertNode(make_pair(tab[i], arr[i]));
+
+	tree.DeleteNode("hello");
 	tree.Print();
-	cout << tree.SearchTree(55)->data.first << " " << tree.SearchTree(55)->data.second <<"\n" ;
-
-	std::less<int>();
-
 }
-

@@ -18,6 +18,8 @@ LIB =	./containers/vector.hpp\
 		./utils/equal.hpp\
 		./utils/lexicographical_compare.hpp\
 		./utils/reverse_iterator.hpp\
+		./utils/rb_tree.hpp\
+		./utils/rb_node.hpp\
 
 
 

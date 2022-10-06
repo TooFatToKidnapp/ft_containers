@@ -25,27 +25,21 @@ struct get_key : public std::unary_function<T, Key> {
 	}
 };
 
-ft::pair<std::string ,int> make_pair(int i, std::string str) {
-	ft::pair<std::string ,int > var(str, i);
+ft::pair<int ,std::string> make_pair(int i, std::string str) {
+	ft::pair<int, std::string> var(i, str);
 	return var;
 }
-
-class test {
-	public:
-		test() {cout << "here\n";}
-		~test() {cout << "there\n";}
-};
 
 
 int main() {
 	int tab[6] = {125,548,-6,0,58,99};
 	std::string arr[6] = {"hello", "world", "somthing", "xd", ":)", ":)"};
-	ft::RBT<std::string , ft::pair<std::string, int> , get_key<ft::pair<std::string, int>, std::string > > tree;
-	for (int i = 0; i < 6; i++)
+	ft::RBT<int , ft::pair<int, std::string> , get_key<ft::pair<int, std::string>, int > > tree;
+	for (int i = 0; i < 4; i++)
 		tree.InsertNode(make_pair(tab[i], arr[i]));
 
-	tree.DeleteNode("hello");
-	cout << tree.getRoot()->data.first << "\n";
+	//tree.DeleteNode("hello");
+	cout << tree.getRoot()->left->right->data.first << "\n";
 	tree.Print();
 
 }

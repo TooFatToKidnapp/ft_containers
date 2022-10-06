@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/06 13:22:36 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/06 15:38:09 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -328,7 +328,7 @@ namespace ft {
 			void	FixInsert(node_ptr node) {
 				node_ptr x;
 				while (node->parent->colour == RED) {
-					if (node->parent == node->parent->right) // parent is gp's right child
+					if (node->parent == node->parent->parent->right) // parent is gp's right child
 					{
 						x = node->parent->parent->left; // uncel is left
 						if (x->colour == RED) // if unc is also red

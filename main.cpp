@@ -30,6 +30,11 @@ ft::pair<std::string ,int> make_pair(int i, std::string str) {
 	return var;
 }
 
+class test {
+	public:
+		test() {cout << "here\n";}
+		~test() {cout << "there\n";}
+};
 
 
 int main() {
@@ -40,5 +45,7 @@ int main() {
 		tree.InsertNode(make_pair(tab[i], arr[i]));
 
 	tree.DeleteNode("hello");
+	cout << tree.getRoot()->data.first << "\n";
 	tree.Print();
+
 }

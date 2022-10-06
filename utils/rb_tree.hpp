@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/06 12:51:12 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/06 13:22:36 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,9 +228,69 @@ namespace ft {
 				_alloc.destroy(z);
 				_alloc.deallocate(z, 1);
 				_size--;
-				//if (y_clr_save == BLACK) // FIX
-					// fix_fun
+				if (y_clr_save == BLACK) // FIX
+					_FixDelete(x);
 				return true;
+			}
+			void _FixDelete(node_ptr node) {
+				node_ptr w;
+				while (node != _root && node->colour == BLACK) {
+					if (node == node->parent->left) { // if node the left child
+						w = node->parent->right;
+						if (w->colour == RED) {
+							w->colour = BLACK;
+							node->parent->colour = RED;
+							// new parent is w , old parent became w's left child, p is still x's parent and x->parent->right bacame old w->left
+							left_rotate(node->parent);
+							w = node->parent->right;
+						}
+						if (w->left->colour == BLACK && w->right->colour == BLACK) {
+							w->colour = RED;
+							node = node->parent;
+						}
+						else { // at least on child is red
+							if (w->right->colour == BLACK) { // left child is red
+								w->left->colour = BLACK;
+								w->colour = RED;
+								right_rotate(w);
+								w = node->parent->right;
+							}
+							w->colour = node->parent->colour;
+							node->parent->colour = BLACK;
+							w->right->colour = BLACK;
+							left_rotate(node->parent);
+							node = _root;
+						}
+					}
+					else { // mirror case
+							w = node->parent->left;
+							if (w->colour == RED) {
+								w->colour = BLACK;
+								node->parent->colour = RED;
+								// new parent is w , old parent became w's left child, p is still x's parent and x->parent->right bacame old w->left
+								right_rotate(node->parent);
+								w = node->parent->left;
+							}
+							if (w->left->colour == BLACK && w->right->colour == BLACK) {
+								w->colour = RED;
+								node = node->parent;
+							}
+							else { // at least on child is red
+								if (w->right->colour == BLACK) { // left child is red
+									w->right->colour = BLACK;
+									w->colour = RED;
+									left_rotate(w);
+									w = node->parent->left;
+								}
+								w->colour = node->parent->colour;
+								node->parent->colour = BLACK;
+								w->left->colour = BLACK;
+								right_rotate(node->parent);
+								node = _root;
+							}
+					}
+				}
+				node->colour = BLACK; // root is always black
 			}
 			void rbSwap(node_ptr node, node_ptr new_node) { // replase node with new_node
 				if (node->parent == NULL)

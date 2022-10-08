@@ -33,24 +33,12 @@ ft::pair<int ,std::string> make_pair(int i, std::string str) {
 
 
 int main() {
-	// int tab[6] = {125,548,-6,0,58,99};
-	// std::string arr[6] = {"hello", "world", "somthing", "xd", ":)", ":)"};
-	// 	ft::RBT<int , ft::pair<int, std::string> , get_key<ft::pair<int, std::string>, int > > tree;
-	// for (int i = 0; i < 4; i++)
-	// 	tree.InsertNode(make_pair(tab[i], arr[i]));
-	// tree.~RBT();
-	// tree.getRoot();
-	//system("leaks ft_containers");
-	// cout << tree.getSize() << "\n";
-	// tree.DeleteNode(0);
-	// cout << tree.getSize() << "\n";
-	// cout << tree.getRoot()->left->right->data.first << "\n";
-	// tree.Print();
-	int *i = new int[10];
-	ft::BidirectionalIterator< int, int> var2(i, NULL, NULL);
-	ft::BidirectionalIterator<int, int> var;
-	var = var2;
 
-	delete [] i;
+	// ft::RBT<int, ft::pair<int, std::string>, get_key<ft::pair<int, std::string>, int> > tree;
+	// ft::Node<int> val(10, NULL, NULL ,NULL, ft::RED);
+	// tree.InsertNode(val);
+	// ft::BidirectionalIterator<int, ft::Node<int> > var2(val, NULL, NULL);
+	//ft::BidirectionalIterator<ft::Node<int>, int> var;
+	//var = var2;
 }
 

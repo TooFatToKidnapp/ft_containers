@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:28:42 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/08 17:19:19 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/08 18:47:40 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,39 @@ namespace ft {
 			operator BidirectionalIterator<value_type const , node_type const>() const {
 				return BidirectionalIterator<value_type const, node_type const>(_ptr, _root, _nil);
 			}
+
 			bool operator==(BidirectionalIterator<value_type, node_type> const &obj) const {
 				return this->_ptr == obj._ptr;
 			}
 
+			bool operator!=(BidirectionalIterator<value_type, node_type> const &obj) const {
+				return this->_ptr != obj._ptr;
+			}
 
+			template<class Iterator, class Itt>
+			friend bool operator==(BidirectionalIterator<Iterator, ft::Node<Iterator> > const &obj, BidirectionalIterator<Itt, ft::Node<Itt> > const &obj2);
+
+			template<class Iterator, class Itt>
+			friend bool operator!=(BidirectionalIterator<Iterator, ft::Node<Iterator> > const &obj, BidirectionalIterator<Itt, ft::Node<Itt> > const &obj2);
+
+			reference operator*() {
+				return this->_ptr->data;
+			}
+
+			const_reference operator*() const {
+				return this->_ptr->data;
+			}
+
+			pointer operator->() {
+				return (&(operator*()));
+			}
+
+			const_pointer operator->() const {
+				return (&(operator*()));
+			}
 	};
+
+
 
 
 } // namespace ft

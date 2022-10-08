@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/06 15:38:09 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/08 16:28:42 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ namespace ft {
 					_root = _nil;
 				}
 
-			~RBT() {
-				// TODO: add recursive fun to clear the tree (virtual ???)
+			~RBT() { // free tree and _nil
+				ClearTree(_root);
 				_alloc.destroy(_nil);
 				_alloc.deallocate(_nil, 1);
 			}
@@ -191,7 +191,22 @@ namespace ft {
 			bool DeleteNode(key_type key) {
 				return _DeleteNode(key);
 			}
+			void ClearTree(node_ptr const &ptr) {
+				_ClearTree(ptr);
+				this->_root = _nil;
+			}
 		private:
+			void _ClearTree(node_ptr const &ptr) {
+				if (ptr == _nil)
+					return;
+
+				_ClearTree(ptr->left);
+				_ClearTree(ptr->right);
+
+				_alloc.destroy(ptr);
+				_alloc.deallocate(ptr, 1);
+				_size--;
+			}
 			bool _DeleteNode(key_type key) {
 				// find the wanted node
 				node_ptr x,y,z;
@@ -377,9 +392,6 @@ namespace ft {
 			}
 
 	};
-
-
-
 
 } // namespace ft
 

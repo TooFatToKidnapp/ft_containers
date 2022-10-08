@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:17:12 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/21 15:31:14 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/08 14:37:13 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ namespace ft {
 				return obj.base() <= obj2.base();
 			}
 
-				template<class T>
+		template<class T>
 		bool	operator>=(random_access_iterator<T> const &obj,
 			random_access_iterator<T> const &obj2){
 				return obj.base() >= obj2.base();

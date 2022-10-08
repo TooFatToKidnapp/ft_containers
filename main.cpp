@@ -2,6 +2,7 @@
 #include "./containers/stack.hpp"
 #include "./utils/pair.hpp"
 #include "./utils/rb_tree.hpp"
+#include "./utils/Bidirectional_Iterator.hpp"
 #include <list>
 #include <vector>
 #include <map>
@@ -32,11 +33,11 @@ ft::pair<int ,std::string> make_pair(int i, std::string str) {
 
 
 int main() {
-	int tab[6] = {125,548,-6,0,58,99};
-	std::string arr[6] = {"hello", "world", "somthing", "xd", ":)", ":)"};
-		ft::RBT<int , ft::pair<int, std::string> , get_key<ft::pair<int, std::string>, int > > tree;
-	for (int i = 0; i < 4; i++)
-		tree.InsertNode(make_pair(tab[i], arr[i]));
+	// int tab[6] = {125,548,-6,0,58,99};
+	// std::string arr[6] = {"hello", "world", "somthing", "xd", ":)", ":)"};
+	// 	ft::RBT<int , ft::pair<int, std::string> , get_key<ft::pair<int, std::string>, int > > tree;
+	// for (int i = 0; i < 4; i++)
+	// 	tree.InsertNode(make_pair(tab[i], arr[i]));
 	// tree.~RBT();
 	// tree.getRoot();
 	//system("leaks ft_containers");
@@ -45,5 +46,11 @@ int main() {
 	// cout << tree.getSize() << "\n";
 	// cout << tree.getRoot()->left->right->data.first << "\n";
 	// tree.Print();
+	int *i = new int[10];
+	ft::BidirectionalIterator< int, int> var2(i, NULL, NULL);
+	ft::BidirectionalIterator<int, int> var;
+	var = var2;
 
+	delete [] i;
 }
+

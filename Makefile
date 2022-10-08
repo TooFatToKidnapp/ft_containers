@@ -2,7 +2,7 @@ NAME = ft_containers
 
 CC = Clang++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98 #-g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -20,6 +20,7 @@ LIB =	./containers/vector.hpp\
 		./utils/reverse_iterator.hpp\
 		./utils/rb_tree.hpp\
 		./utils/rb_node.hpp\
+		./utils/Bidirectional_Iterator.hpp\
 
 
 

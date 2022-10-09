@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/09 15:38:37 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/09 17:50:23 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,27 @@ namespace ft{
 
 			template<class InputIterator>
 			map(InputIterator first, InputIterator last, const key_compare &comp = key_compare(), const allocator_type& alloc = allocator_type());
+
+			map(const map &obj);
+
+			~map();
+
+			map &operator=(const map &obj);
+
+
+			iterator end();
+
+			const_iterator end() const;
+
+
+			template<class InputIterator>
+			void insert(InputIterator first, InputIterator last);
+
+			ft::pair<iterator, bool> insert(const value_type &val);
+
+			iterator find(const key_type &key);
+
+			const_iterator find(const key_type &key) const;
 
 };
 

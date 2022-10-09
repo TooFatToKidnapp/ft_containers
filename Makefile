@@ -10,8 +10,10 @@ SRC =	main.cpp
 
 LIB =	./containers/vector.hpp\
 		./containers/vector.ipp\
+		./containers/stack.hpp\
 		./containers/stack.ipp\
-		./containers/stack.ipp\
+		./containers/map.hpp\
+		./containers/map.ipp\
 		./utils/iterator.hpp\
 		./utils/random_access_iterator.hpp\
 		./utils/type_traits.hpp\
@@ -28,9 +30,6 @@ all : $(NAME)
 
 $(NAME) : $(OBJ) $(LIB)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-
-main :
-	$(CC) $(FLAGS) vec_test.cpp -o std_vector
 
 %.o : %.cpp $(LIB)
 	$(CC) $(FLAGS) -o $@ -c $<

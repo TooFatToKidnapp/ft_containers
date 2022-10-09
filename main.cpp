@@ -28,7 +28,7 @@ ft::pair<int ,std::string> make_pair(int i, std::string str) {
 
 int main() {
 
-	ft::RBT<int, ft::pair<int, std::string>, ft::get_key<ft::pair<int, std::string>, int> > tree;
+	//ft::RBT<int, ft::pair<int, std::string>, ft::get_key<ft::pair<int, std::string>, int> > tree;
 	// ft::Node<int> val(10, NULL, NULL ,NULL, ft::RED);
 	// tree.InsertNode(val);
 	// ft::BidirectionalIterator<int, ft::Node<int> > var2(val, NULL, NULL);

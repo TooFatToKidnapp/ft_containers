@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/09 18:20:35 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/09 20:19:51 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ template<class Key, class T, class Compare , class Allocator>
 template<class InputIterator>
 MyMap::map(InputIterator first, InputIterator last, const key_compare &comp, const allocator_type& alloc)
 				: _comp(comp), _alloc(alloc), _tree() {
-	// TODO: creat and call the insert finction
+	insert(first, last);
 }
 
 template<class Key, class T, class Compare , class Allocator>
 MyMap::map(const map &obj)
 	: _comp(obj._comp), _alloc(obj._alloc) {
-		// insert here too
+		insert(obj.begin(), obj.end());
 }
 
 template<class Key, class T, class Compare , class Allocator>
@@ -40,12 +40,22 @@ template<class Key, class T, class Compare , class Allocator>
 MyMap &MyMap::operator=(const map &obj) {
 	if (this != &obj) {
 		if (this->_tree.getRoot() != this->_tree.getNil())
-			// clear
+			clear();
 		this->_comp = obj._comp;
 		this->_alloc = obj._alloc;
-		// insert
+		insert(obj.begin(), obj.end());
 	}
 	return *this;
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::iterator MyMap::begin() {
+	return iterator(_tree.minimum(), _tree.getRoot(), _tree.getNil());
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::const_iterator MyMap::begin()const {
+	return const_iterator(_tree.minimum(), _tree.getRoot(), _tree.getNil());
 }
 
 template<class Key, class T, class Compare , class Allocator>
@@ -58,20 +68,36 @@ typename MyMap::const_iterator MyMap::end()const {
 	return const_iterator(_tree.getNil(), _tree.getRoot(), _tree.getNil());
 }
 
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::reverse_iterator MyMap::rbegin() {
+	return typename MyMap::reverse_iterator(end());
+}
 
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::const_reverse_iterator MyMap::rbegin() const{
+	return typename MyMap::const_reverse_iterator(end());
+}
 
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::reverse_iterator MyMap::rend() {
+	return typename MyMap::reverse_iterator(begin());
+}
 
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::const_reverse_iterator MyMap::rend() const{
+	return typename MyMap::const_reverse_iterator(begin());
+}
 
 template<class Key, class T, class Compare , class Allocator>
 template<class InputIterator>
 void MyMap::insert(InputIterator first, InputIterator last){
 	while (first != last)
-		insert(*first++)
+		insert(*first++);
 }
 
 template<class Key, class T, class Compare , class Allocator>
 ft::pair<typename MyMap::iterator, bool> MyMap::insert(const typename MyMap::value_type &val) {
-	typename ft::map::iterator it = find(val.first);
+	typename MyMap::iterator it = find(val.first);
 	if (it != end())
 		return ft::pair<typename MyMap::iterator, bool>(it, false);
 	else {
@@ -95,7 +121,10 @@ typename MyMap::const_iterator MyMap::find(const typename MyMap::key_type &key) 
 	return const_iterator(tmp, _tree.getRoot(), _tree.getNil());
 }
 
-
+template<class Key, class T, class Compare , class Allocator>
+void MyMap::clear() {
+	_tree.ClearTree(_tree.getRoot());
+}
 
 
 

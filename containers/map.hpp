@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/09 17:50:23 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/09 20:19:13 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,16 @@ namespace ft{
 			map &operator=(const map &obj);
 
 
-			iterator end();
 
-			const_iterator end() const;
+			iterator				begin();
+			const_iterator			begin() const;
+			iterator				end();
+			const_iterator			end() const;
 
+			reverse_iterator		rbegin();
+			 const_reverse_iterator	rbegin() const;
+			reverse_iterator		rend();
+			const_reverse_iterator	rend() const;
 
 			template<class InputIterator>
 			void insert(InputIterator first, InputIterator last);
@@ -83,6 +89,8 @@ namespace ft{
 			iterator find(const key_type &key);
 
 			const_iterator find(const key_type &key) const;
+
+			void clear();
 
 };
 

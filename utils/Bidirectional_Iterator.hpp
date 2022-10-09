@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:28:42 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/08 18:47:40 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/09 13:47:06 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,13 +86,90 @@ namespace ft {
 			const_pointer operator->() const {
 				return (&(operator*()));
 			}
+
+			BidirectionalIterator &operator++() {
+				if (this->_ptr != _nil)
+					_ptr = successor(_ptr);
+				return *this;
+			}
+
+			BidirectionalIterator operator++(int) {
+				BidirectionalIterator tmp(*this);
+				operator++();
+				return tmp;
+			}
+
+			BidirectionalIterator &operator--() {
+				if (this->_ptr == this->_nil)
+					_ptr = maximum(this->_root);
+				else
+					this->_ptr = predecessor(this->_ptr);
+				return *this;
+			}
+
+			BidirectionalIterator operator--(int) {
+				BidirectionalIterator tmp(*this);
+				operator--();
+				return tmp;
+			}
+
+		protected:
+			node_ptr maximum(node_ptr node) {
+				while (node->right != this->_nil)
+					node = node->right;
+				return node;
+			}
+
+			node_ptr minimum(node_ptr node) {
+				while (node->left != this->_nil)
+					node = node->left;
+				return node;
+			}
+
+			node_ptr predecessor(node_ptr node) {
+				if (node->left != this->_nil) { // if the left subtree is not null the predecessor is the right most node is the left subtree
+					return maximum(node->left);
+				}
+				else { // else it is the lowest ancestor of node whose right child is also an ancestor of node
+					node_ptr x = node->parent;
+					while (x != NULL && node == x->left) {
+						node = x;
+						x = x->parent;
+					}
+					return x;
+				}
+			}
+
+			node_ptr successor(node_ptr node) {
+				if (node->right != this->_nil) {
+					return minimum(node->right);
+				}
+				else {
+					node_ptr x = node->parent;
+					while (x != NULL && node == x->right) {
+						node = x;
+						x = x->parent;
+					}
+					if (x == NULL)
+						return _nil;
+					return x;
+				}
+			}
 	};
 
 
+	template<class Iterator, class Itt>
+	bool operator==(BidirectionalIterator<Iterator, ft::Node<Iterator> > const &obj, BidirectionalIterator<Itt, ft::Node<Itt> > const &obj2){
+		return obj._ptr == obj2._ptr;
+	}
+
+	template<class Iterator, class Itt>
+	bool operator!=(BidirectionalIterator<Iterator, ft::Node<Iterator> > const &obj, BidirectionalIterator<Itt, ft::Node<Itt> > const &obj2){
+		return obj._ptr != obj2._ptr;
+	}
 
 
 } // namespace ft
-
 
 
 #endif

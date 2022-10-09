@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/04 15:25:31 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/09 14:36:38 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,38 @@
 
 namespace ft{
 
-template<class Key, class T, class Compare = std::less<Key>,
-		class Allocator = std::allocator<ft::pair<const Key, T> > >
-class Map {
-	public:
-		typedef Key									key_type;
-		typedef T									mapped_type;
-		typedef ft::pair<const Key, T>				value_type;
-		typedef std::size_t							size_type;
-		typedef std::ptrdiff_t						difference_type;
-		typedef Compare								key_compare;
-		typedef Allocator							allocator_type;
-		typedef	typename Allocator::reference		reference;
-		typedef typename Allocator::const_reference	const_reference;
-		typedef typename Allocator::pointer			pointer;
-		typedef typename Allocator::const_pointer	const_pointer;
-		// need to add bidirectional iterator
+	template <class T, class Key>
+	struct get_key : public std::unary_function<T, Key> {
+		const Key &operator()(const T &x) const {
+			return x.first;
+		}
+	};
+
+	template<class Key, class T, class Compare = std::less<Key>,
+			class Allocator = std::allocator<ft::pair<const Key, T> > >
+	class Map {
+		public:
+			typedef Key										key_type;
+			typedef T										mapped_type;
+			typedef ft::pair<const Key, T>					value_type;
+			typedef Compare									key_compare;
+			typedef Allocator								allocator_type;
+			typedef typename Allocator::size_type			size_type;
+			typedef typename Allocator::difference_type		difference_type;
+			typedef	typename Allocator::reference			reference;
+			typedef typename Allocator::const_reference		const_reference;
+			typedef typename Allocator::pointer				pointer;
+			typedef typename Allocator::const_pointer		const_pointer;
+
+			typedef ft::RBT<key_type, value_type, get_key<value_type, key_type>, key_compare> tree_type;
+			typedef Node<value_type>	node_type;
+			typedef Node<value_type>*	node_ptr;
+
+			typedef ft::BidirectionalIterator<value_type, node_type>				iterator;
+			typedef ft::BidirectionalIterator<value_type const, node_type const>	const_iterator;
+			typedef ft::reverse_iterator<iterator>									reverse_iterator;
+			typedef ft::reverse_iterator<const_iterator>							const_reverse_iterator;
+
 
 
 

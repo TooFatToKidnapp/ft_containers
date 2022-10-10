@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 16:37:54 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 17:40:43 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,21 @@ typename MyMap::mapped_type &MyMap::operator[](const typename MyMap::key_type &k
 	}
 }
 
+template<class Key, class T, class Compare , class Allocator>
+T& MyMap::at( const Key& key ) {
+	node_ptr tmp = this->_tree.SearchTree(key);
+	if (tmp == this->_tree.getNil())
+		throw(std::out_of_range("ft::map.at(), key not found"));
+	return tmp->data.second;
+}
+
+template<class Key, class T, class Compare , class Allocator>
+const T& MyMap::at( const Key& key ) const {
+	node_ptr tmp = this->_tree.SearchTree(key);
+	if (tmp == this->_tree.getNil())
+		throw(std::out_of_range("ft::map.at(), key not found"));
+	return tmp->data.second;
+}
 
 
 
@@ -133,7 +148,16 @@ ft::pair<typename MyMap::iterator, bool> MyMap::insert(const typename MyMap::val
 		return ft::pair<typename MyMap::iterator, bool>(it, false);
 	else {
 		this->_tree.InsertNode(val);
+		it = find(val.first);
+		return (ft::pair<typename MyMap::iterator, bool>(it, true));
 	}
+}
+
+template<class Key, class T, class Compare , class Allocator>
+template<class InputIterator>
+void MyMap::insert(InputIterator pos, const typename MyMap::value_type &val){
+	(void)pos;
+	return insert(val).first;
 }
 
 template<class Key, class T, class Compare , class Allocator>

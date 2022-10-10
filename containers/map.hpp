@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 16:29:47 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 17:39:20 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,17 @@ namespace ft{
 			size_type		max_size() const;
 			size_type		size() const;
 
-			mapped_type &operator[](const key_type &key);
+			mapped_type	&operator[](const key_type &key);
+			T&			at( const Key& key );
+			const T&	at( const Key& key ) const;
 
 			template<class InputIterator>
-			void insert(InputIterator first, InputIterator last);
+			void						insert(InputIterator first, InputIterator last);
 
-			ft::pair<iterator, bool> insert(const value_type &val);
+			ft::pair<iterator, bool>	insert(const value_type &val);
+
+			template<class InputIterator>
+			void						insert(InputIterator pos, const value_type &val);
 
 			iterator find(const key_type &key);
 

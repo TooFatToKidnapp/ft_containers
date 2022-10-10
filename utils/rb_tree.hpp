@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 20:20:57 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 21:20:09 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,19 @@ namespace ft {
 			void ClearTree(node_ptr const &ptr) {
 				_ClearTree(ptr);
 				this->_root = _nil;
+			}
+			void swap(RBT &x) { // swap the current elem with x
+				node_ptr tmp_root = this->_root;
+				this->_root = x._root;
+				x._root = tmp_root;
+
+				node_ptr tmp_nil = this->_nil;
+				this->_nil = x._nil;
+				x._nil = tmp_nil;
+
+				size_type tmp_size = this->_size;
+				this->_size = x._size;
+				x._size = tmp_size;
 			}
 		private:
 			void _ClearTree(node_ptr const &ptr) {

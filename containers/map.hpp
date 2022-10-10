@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 19:56:10 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 21:15:48 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ namespace ft{
 			void 		erase( iterator pos );
 			void		erase(iterator first, iterator last);
 			size_type	erase( const Key& key );
+
+			void swap(map& other);
 
 			iterator find(const key_type &key);
 			const_iterator find(const key_type &key) const;

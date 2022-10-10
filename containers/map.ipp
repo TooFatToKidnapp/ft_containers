@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 20:14:25 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 21:16:27 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,11 @@ typename MyMap::size_type MyMap::erase( const Key& key ) {
 	if (this->_tree.DeleteNode(key) == true)
 		return 1;
 	return 0;
+}
+
+template<class Key, class T, class Compare , class Allocator>
+void MyMap::swap( map& other ) {
+	this->_tree.swap(other._tree);
 }
 
 

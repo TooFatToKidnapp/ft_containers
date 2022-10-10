@@ -29,19 +29,29 @@ ft::pair<int ,std::string> make_pair(int i, std::string str) {
 int main() {
 
 	map<int, std::string> var;
-	//cout << var.empty()<< "\n";
 	var[7] = "hello";
 	var[-1] = "world";
 	var[1] = "somthing";
 	var[-111] = "xd";
 	var[878] = "test";
-	//const map<int, std::string> var2(var.begin(), var.end());
-	// cout << var2.at(-111) << "\n";
-	var.erase(var.begin());
+
+	map<int, std::string> var2;
+	var2[77] = "fff";
+	var2[85] = "ppp";
+	var2[-5] = "rrr";
+	var2[0] = "zzz";
+
+	var.swap(var2);
+
 	map<int, std::string>::iterator it = var.begin();
 	for (; it != var.end(); ++it)
-		cout << (*it).first << " " << (*it).second << " ";
-	cout << "\n";
+		cout << "["<<(*it).first << "," << (*it).second << "] ";
+	cout << var.size() <<"\n";
+
+	map<int, std::string>::iterator itt = var2.begin();
+	for (; itt != var2.end(); ++itt)
+			cout << "["<<(*itt).first << "," << (*itt).second << "] ";
+	cout << var2.size() << "\n";
 	// cout << var.empty()<< "\n";
 
 }

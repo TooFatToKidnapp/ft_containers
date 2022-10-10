@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 18:03:58 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/08 17:18:16 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 20:20:57 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ namespace ft {
 					node->parent->right = tmp; // mirror case
 				tmp->left = node;
 				node->parent = tmp;
-
 			}
 
 			void right_rotate(node_ptr node) //mirror case
@@ -291,7 +290,7 @@ namespace ft {
 								node = node->parent;
 							}
 							else { // at least on child is red
-								if (w->right->colour == BLACK) { // left child is red
+								if (w->left->colour == BLACK) { // left child is red
 									w->right->colour = BLACK;
 									w->colour = RED;
 									left_rotate(w);

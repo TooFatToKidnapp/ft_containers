@@ -35,12 +35,13 @@ int main() {
 	var[1] = "somthing";
 	var[-111] = "xd";
 	var[878] = "test";
-	const map<int, std::string> var2(var.begin(), var.end());
-	cout << var2.at(-111) << "\n";
-	// map<int, std::string>::iterator it = var.begin();
-	// for (; it != var.end(); ++it)
-	// 	cout << (*it).first << " " << (*it).second << " ";
-	// cout << "\n";
+	//const map<int, std::string> var2(var.begin(), var.end());
+	// cout << var2.at(-111) << "\n";
+	var.erase(var.begin());
+	map<int, std::string>::iterator it = var.begin();
+	for (; it != var.end(); ++it)
+		cout << (*it).first << " " << (*it).second << " ";
+	cout << "\n";
 	// cout << var.empty()<< "\n";
 
 }

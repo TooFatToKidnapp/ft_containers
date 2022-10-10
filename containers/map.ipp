@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 17:40:43 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 20:14:25 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,6 @@ const T& MyMap::at( const Key& key ) const {
 	return tmp->data.second;
 }
 
-
-
 template<class Key, class T, class Compare , class Allocator>
 template<class InputIterator>
 void MyMap::insert(InputIterator first, InputIterator last){
@@ -154,11 +152,36 @@ ft::pair<typename MyMap::iterator, bool> MyMap::insert(const typename MyMap::val
 }
 
 template<class Key, class T, class Compare , class Allocator>
+void MyMap::clear() {
+	_tree.ClearTree(_tree.getRoot());
+}
+
+template<class Key, class T, class Compare , class Allocator>
 template<class InputIterator>
 void MyMap::insert(InputIterator pos, const typename MyMap::value_type &val){
 	(void)pos;
 	return insert(val).first;
 }
+
+
+template<class Key, class T, class Compare , class Allocator>
+void MyMap::erase(typename MyMap::iterator pos ){
+	erase((*pos).first);
+}
+
+template<class Key, class T, class Compare , class Allocator>
+void MyMap::erase(typename MyMap::iterator first, typename MyMap::iterator last){
+	while(first != last)
+		erase((*(first++)).first);
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::size_type MyMap::erase( const Key& key ) {
+	if (this->_tree.DeleteNode(key) == true)
+		return 1;
+	return 0;
+}
+
 
 template<class Key, class T, class Compare , class Allocator>
 typename MyMap::iterator MyMap::find(const typename MyMap::key_type &key) {
@@ -174,11 +197,6 @@ typename MyMap::const_iterator MyMap::find(const typename MyMap::key_type &key) 
 	if (tmp == _tree.getNil())
 		return end();
 	return const_iterator(tmp, _tree.getRoot(), _tree.getNil());
-}
-
-template<class Key, class T, class Compare , class Allocator>
-void MyMap::clear() {
-	_tree.ClearTree(_tree.getRoot());
 }
 
 

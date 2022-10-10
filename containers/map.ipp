@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/09 20:19:51 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 16:37:54 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,37 @@ template<class Key, class T, class Compare , class Allocator>
 typename MyMap::const_reverse_iterator MyMap::rend() const{
 	return typename MyMap::const_reverse_iterator(begin());
 }
+
+template<class Key, class T, class Compare , class Allocator>
+bool MyMap::empty() const {
+	return (this->_tree.getSize() == 0);
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::size_type MyMap::size() const {
+	return this->_tree.getSize();
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::size_type MyMap::max_size() const {
+	return _tree.max_size();
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::mapped_type &MyMap::operator[](const typename MyMap::key_type &key) {
+	node_ptr val = this->_tree.SearchTree(key);
+	// TODO : if this method is too slow rethink it
+	if (val != this->_tree.SearchTree(key))
+		return val->data.second;
+	else {
+		_tree.InsertNode(value_type(key, mapped_type()));
+		val = _tree.SearchTree(key);
+		return val->data.second;
+	}
+}
+
+
+
 
 template<class Key, class T, class Compare , class Allocator>
 template<class InputIterator>

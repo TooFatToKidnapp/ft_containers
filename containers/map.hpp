@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/09 20:19:13 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/10 16:29:47 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,28 +58,28 @@ namespace ft{
 			tree_type		_tree;
 
 		public:
-			explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type());
 
+			explicit map(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type());
 			template<class InputIterator>
 			map(InputIterator first, InputIterator last, const key_compare &comp = key_compare(), const allocator_type& alloc = allocator_type());
-
 			map(const map &obj);
-
 			~map();
-
 			map &operator=(const map &obj);
-
-
 
 			iterator				begin();
 			const_iterator			begin() const;
 			iterator				end();
 			const_iterator			end() const;
-
 			reverse_iterator		rbegin();
-			 const_reverse_iterator	rbegin() const;
+			const_reverse_iterator	rbegin() const;
 			reverse_iterator		rend();
 			const_reverse_iterator	rend() const;
+
+			bool			empty() const;
+			size_type		max_size() const;
+			size_type		size() const;
+
+			mapped_type &operator[](const key_type &key);
 
 			template<class InputIterator>
 			void insert(InputIterator first, InputIterator last);

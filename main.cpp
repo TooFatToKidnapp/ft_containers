@@ -29,6 +29,16 @@ ft::pair<int ,std::string> make_pair(int i, std::string str) {
 int main() {
 
 	ft::map<int, std::string> var;
-	ft::map<int, std::string>::reverse_iterator it = var.rend();
-}
+	cout << var.empty()<< "\n";
+	var[7] = "hello";
+	var[-1] = "world";
+	var[1] = "somthing";
+	var[-111] = "xd";
+	var[878] = "test";
+	ft::map<int, std::string>::iterator it = var.begin();
+	for (; it != var.end(); ++it)
+		cout << (*it).first << " " << (*it).second << " ";
+	cout << "\n";
+	cout << var.empty()<< "\n";
 
+}

@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/11 12:00:55 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/11 12:18:28 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,7 +250,6 @@ typename MyMap::const_iterator MyMap::lower_bound (const key_type& k) const{
 	return start;
 }
 
-
 template<class Key, class T, class Compare , class Allocator>
 typename MyMap::iterator MyMap::upper_bound (const key_type& k) {
 	iterator start = this->begin();
@@ -273,6 +272,22 @@ typename MyMap::const_iterator MyMap::upper_bound (const key_type& k) const{
 		++start;
 	}
 	return start;
+}
+
+template<class Key, class T, class Compare , class Allocator>
+ft::pair<typename MyMap::const_iterator, typename MyMap::const_iterator> MyMap::equal_range(const key_type& k) const {
+	return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+}
+
+template<class Key, class T, class Compare , class Allocator>
+ft::pair<typename MyMap::iterator, typename MyMap::iterator> MyMap::equal_range(const key_type& k) {
+	return (ft::make_pair(this->lower_bound(k), this->upper_bound(k)));
+}
+
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::allocator_type MyMap::get_allocator() const {
+	return this->_alloc;
 }
 
 

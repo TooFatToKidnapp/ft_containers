@@ -35,27 +35,13 @@ int main() {
 	var[-111] = "xd";
 	var[878] = "test";
 
-	cout << var.count(9) << "\n";
+	map<int, std::string> var2;
+	var2[77] = "fff";
+	var2[85] = "ppp";
+	var2[-5] = "rrr";
+	var2[0] = "zzz";
 
-
-
-	// map<int, std::string> var2;
-	// var2[77] = "fff";
-	// var2[85] = "ppp";
-	// var2[-5] = "rrr";
-	// var2[0] = "zzz";
-
-	// var.swap(var2);
-
-	// map<int, std::string>::iterator it = var.begin();
-	// for (; it != var.end(); ++it)
-	// 	cout << "["<<(*it).first << "," << (*it).second << "] ";
-	// cout << var.size() <<"\n";
-
-	// map<int, std::string>::iterator itt = var2.begin();
-	// for (; itt != var2.end(); ++itt)
-	// 		cout << "["<<(*itt).first << "," << (*itt).second << "] ";
-	// cout << var2.size() << "\n";
-	// // cout << var.empty()<< "\n";
+	if (var > var2)
+		cout << "true\n";
 
 }

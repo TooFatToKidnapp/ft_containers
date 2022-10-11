@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/11 11:58:09 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/11 12:32:24 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdexcept> //std::out_of_range
 #include "../utils/pair.hpp"
 #include "../utils/Bidirectional_Iterator.hpp"
+#include "../utils/allocator.hpp"
 
 namespace ft{
 
@@ -108,12 +109,16 @@ namespace ft{
 			const_iterator	find(const key_type &key) const;
 
 			size_type		count(const key_type &key) const;
-			iterator		lower_bound (const key_type& k);
-			const_iterator	lower_bound (const key_type& k) const;
-			iterator		upper_bound (const key_type& k);
-			const_iterator	upper_bound (const key_type& k) const;
-};
+			iterator		lower_bound(const key_type& k);
+			const_iterator	lower_bound(const key_type& k) const;
+			iterator		upper_bound(const key_type& k);
+			const_iterator	upper_bound(const key_type& k) const;
 
+			ft::pair<const_iterator,const_iterator>	equal_range(const key_type& k) const;
+			ft::pair<iterator,iterator>				equal_range(const key_type& k);
+
+			allocator_type	get_allocator() const;
+};
 
 template <class Key, class T, class Compare, class Alloc>
 class map<Key, T, Compare, Alloc>::value_compare {
@@ -129,6 +134,38 @@ class map<Key, T, Compare, Alloc>::value_compare {
 			return (comp(obj.first, obj2.first));
 		}
 };
+
+template<class Key, class T, class Compare, class Alloc>
+bool operator==(const map<Key, T, Compare, Alloc> &first, const map<Key, T, Compare, Alloc> &second) {
+	if (first.size() != second.size())
+		return false;
+	return ft::equal(first.begin(), first.end(), second.begin());
+}
+
+template<class Key, class T, class Compare, class Alloc>
+bool operator!=(const map<Key, T, Compare, Alloc> &first, const map<Key, T, Compare, Alloc> &second) {
+	return (!(second == first));
+}
+
+template<class Key, class T, class Compare, class Alloc>
+bool operator<(const map<Key, T, Compare, Alloc> &first, const map<Key, T, Compare, Alloc> &second) {
+	return ft::lexicographical_compare(first.begin(), first.end(), second.begin(), second.end());
+}
+
+template<class Key, class T, class Compare, class Alloc>
+bool operator>(const map<Key, T, Compare, Alloc> &first, const map<Key, T, Compare, Alloc> &second) {
+	return (second < first);
+}
+
+template<class Key, class T, class Compare, class Alloc>
+bool operator<=(const map<Key, T, Compare, Alloc> &first, const map<Key, T, Compare, Alloc> &second) {
+	return (!(second < first));
+}
+
+template<class Key, class T, class Compare, class Alloc>
+bool operator>=(const map<Key, T, Compare, Alloc> &first, const map<Key, T, Compare, Alloc> &second) {
+	return (!(first < second));
+}
 
 } // namespace ft
 

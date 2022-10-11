@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 21:15:48 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/11 11:58:09 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ namespace ft{
 	template<class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<ft::pair<const Key, T> > >
 	class map {
 		public:
+
+			class value_compare;
+
 			typedef Key											key_type;
 			typedef T											mapped_type;
 			typedef ft::pair<const Key, T>						value_type;
@@ -80,8 +83,8 @@ namespace ft{
 			size_type		size() const;
 
 			mapped_type	&operator[](const key_type &key);
-			T&			at( const Key& key );
-			const T&	at( const Key& key ) const;
+			T&			at(const Key& key);
+			const T&	at(const Key& key) const;
 
 			template<class InputIterator>
 			void						insert(InputIterator first, InputIterator last);
@@ -97,14 +100,35 @@ namespace ft{
 			void		erase(iterator first, iterator last);
 			size_type	erase( const Key& key );
 
-			void swap(map& other);
+			void			swap(map& other);
+			key_compare		key_comp() const;
+			value_compare	value_comp() const;
 
-			iterator find(const key_type &key);
-			const_iterator find(const key_type &key) const;
+			iterator		find(const key_type &key);
+			const_iterator	find(const key_type &key) const;
 
-
+			size_type		count(const key_type &key) const;
+			iterator		lower_bound (const key_type& k);
+			const_iterator	lower_bound (const key_type& k) const;
+			iterator		upper_bound (const key_type& k);
+			const_iterator	upper_bound (const key_type& k) const;
 };
 
+
+template <class Key, class T, class Compare, class Alloc>
+class map<Key, T, Compare, Alloc>::value_compare {
+		friend class map;
+	protected:
+		Compare comp;
+		value_compare(Compare c) : comp(c) {}
+	public:
+		typedef bool result_type;
+		typedef value_type first_argument_type;
+		typedef value_type second_argument_type;
+		bool operator() (const value_compare & obj, const value_compare &obj2) {
+			return (comp(obj.first, obj2.first));
+		}
+};
 
 } // namespace ft
 

@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/10 21:16:27 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/11 12:00:55 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@ typename MyMap::const_iterator MyMap::end()const {
 
 template<class Key, class T, class Compare , class Allocator>
 typename MyMap::reverse_iterator MyMap::rbegin() {
-	return typename MyMap::reverse_iterator(end());
+	return reverse_iterator(end());
 }
 
 template<class Key, class T, class Compare , class Allocator>
 typename MyMap::const_reverse_iterator MyMap::rbegin() const{
-	return typename MyMap::const_reverse_iterator(end());
+	return const_reverse_iterator(end());
 }
 
 template<class Key, class T, class Compare , class Allocator>
 typename MyMap::reverse_iterator MyMap::rend() {
-	return typename MyMap::reverse_iterator(begin());
+	return reverse_iterator(begin());
 }
 
 template<class Key, class T, class Compare , class Allocator>
 typename MyMap::const_reverse_iterator MyMap::rend() const{
-	return typename MyMap::const_reverse_iterator(begin());
+	return const_reverse_iterator(begin());
 }
 
 template<class Key, class T, class Compare , class Allocator>
@@ -104,7 +104,7 @@ typename MyMap::size_type MyMap::max_size() const {
 }
 
 template<class Key, class T, class Compare , class Allocator>
-typename MyMap::mapped_type &MyMap::operator[](const typename MyMap::key_type &key) {
+typename MyMap::mapped_type &MyMap::operator[](const key_type &key) {
 	node_ptr val = this->_tree.SearchTree(key);
 	// TODO : if this method is too slow rethink it
 	if (val != this->_tree.SearchTree(key))
@@ -140,8 +140,8 @@ void MyMap::insert(InputIterator first, InputIterator last){
 }
 
 template<class Key, class T, class Compare , class Allocator>
-ft::pair<typename MyMap::iterator, bool> MyMap::insert(const typename MyMap::value_type &val) {
-	typename MyMap::iterator it = find(val.first);
+ft::pair<typename MyMap::iterator, bool> MyMap::insert(const value_type &val) {
+	iterator it = find(val.first);
 	if (it != end())
 		return ft::pair<typename MyMap::iterator, bool>(it, false);
 	else {
@@ -158,19 +158,19 @@ void MyMap::clear() {
 
 template<class Key, class T, class Compare , class Allocator>
 template<class InputIterator>
-void MyMap::insert(InputIterator pos, const typename MyMap::value_type &val){
+void MyMap::insert(InputIterator pos, const value_type &val){
 	(void)pos;
 	return insert(val).first;
 }
 
 
 template<class Key, class T, class Compare , class Allocator>
-void MyMap::erase(typename MyMap::iterator pos ){
+void MyMap::erase(iterator pos ){
 	erase((*pos).first);
 }
 
 template<class Key, class T, class Compare , class Allocator>
-void MyMap::erase(typename MyMap::iterator first, typename MyMap::iterator last){
+void MyMap::erase(iterator first, iterator last){
 	while(first != last)
 		erase((*(first++)).first);
 }
@@ -187,9 +187,19 @@ void MyMap::swap( map& other ) {
 	this->_tree.swap(other._tree);
 }
 
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::key_compare MyMap::key_comp() const {
+	return this->_comp;
+}
 
 template<class Key, class T, class Compare , class Allocator>
-typename MyMap::iterator MyMap::find(const typename MyMap::key_type &key) {
+typename MyMap::value_compare MyMap::value_comp() const {
+	return value_compare(this->_comp);
+}
+
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::iterator MyMap::find(const key_type &key) {
 	node_ptr tmp = _tree.SearchTree(key);
 	if (tmp == _tree.getNil())
 		return end();
@@ -197,13 +207,73 @@ typename MyMap::iterator MyMap::find(const typename MyMap::key_type &key) {
 }
 
 template<class Key, class T, class Compare , class Allocator>
-typename MyMap::const_iterator MyMap::find(const typename MyMap::key_type &key) const {
+typename MyMap::const_iterator MyMap::find(const key_type &key) const {
 	node_ptr tmp = _tree.SearchTree(key);
 	if (tmp == _tree.getNil())
 		return end();
 	return const_iterator(tmp, _tree.getRoot(), _tree.getNil());
 }
 
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::size_type MyMap::count(const key_type &key) const{
+	const_iterator start = this->begin();
+	const_iterator end = this->end();
+	while (start != end) {
+		if ((*start).first == key)
+			return 1;
+		++start;
+	}
+	return 0;
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::iterator MyMap::lower_bound (const key_type& k) {
+	iterator start = this->begin();
+	iterator end = this->end();
+	while (start != end) {
+		if (this->_comp((*start).first, k) == false)
+			break;
+		++start;
+	}
+	return start;
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::const_iterator MyMap::lower_bound (const key_type& k) const{
+	const_iterator start = this->begin();
+	const_iterator end = this->end();
+	while (start != end) {
+		if (this->_comp((*start).first, k) == false)
+			break;
+		++start;
+	}
+	return start;
+}
+
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::iterator MyMap::upper_bound (const key_type& k) {
+	iterator start = this->begin();
+	iterator end = this->end();
+	while (start != end) {
+		if (this->_comp(k, (*start).first))
+			break;
+		++start;
+	}
+	return start;
+}
+
+template<class Key, class T, class Compare , class Allocator>
+typename MyMap::const_iterator MyMap::upper_bound (const key_type& k) const{
+	const_iterator start = this->begin();
+	const_iterator end = this->end();
+	while (start != end) {
+		if (this->_comp(k, (*start).first))
+			break;
+		++start;
+	}
+	return start;
+}
 
 
 } // namespace ft

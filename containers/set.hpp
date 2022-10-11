@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:34:49 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/11 17:02:59 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/11 17:13:43 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "./../utils/rb_tree.hpp"
 #include "./../utils/rb_node.hpp"
 #include "./../utils/Bidirectional_Iterator.hpp"
+#include "./../utils/pair.hpp"
 
 namespace ft
 {
@@ -77,7 +78,12 @@ namespace ft
 			iterator			rend();
 			const_iterator		rend() const;
 
-
+			iterator find (const value_type& val) const;
+			
+			ft::pair<iterator,bool> insert(const value_type& val);
+			iterator insert(iterator position, const value_type& val);
+			template <class InputIterator>
+			void insert(InputIterator first, InputIterator last);
 	};
 
 } // namespace ft

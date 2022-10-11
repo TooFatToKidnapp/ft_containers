@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/10 17:32:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/24 17:57:22 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/11 17:05:39 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,12 @@ namespace ft{
 	struct is_integral<unsigned long> : public ft::true_type
 	{};
 
-
 	template<>
 	struct is_integral<long long> : public ft::true_type
 	{};
 
-
 	template<>
 	struct is_integral<unsigned long long> : public ft::true_type
-	{};
-
-	template<>
-	struct is_integral<char16_t> : public ft::true_type
-	{};
-
-	template<>
-	struct is_integral<char32_t> : public ft::true_type
 	{};
 
 	template<>

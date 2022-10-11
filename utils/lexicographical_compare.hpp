@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:26:18 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/17 15:45:02 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/11 15:45:40 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ bool	lexicographical_compare(Itt1 start1, Itt1 end1, Itt2 start2, Itt2 end2){
 				return true;
 		if (*start1 > *start2)
 				return false;
-		start1++;
-		start2++;
+		++start1;
+		++start2;
 	}
 	return false;
 }
@@ -48,8 +48,8 @@ bool	lexicographical_compare(Itt1 start1, Itt1 end1, Itt2 start2,
 				return true;
 		if (op(*start2, *start1))
 				return false;
-		start1++;
-		start2++;
+		++start1;
+		++start2;
 	}
 	return false;
 }

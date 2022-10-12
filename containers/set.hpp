@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:34:49 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/12 11:11:13 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/12 12:43:15 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ namespace ft
 			typedef ft::Node<value_type> node_type;
 			typedef ft::Node<value_type>* node_ptr;
 
-			typedef ft::BidirectionalIterator<value_type, node_type>				iterator;
+			typedef ft::BidirectionalIterator<value_type const, node_type const>				iterator;
 			typedef ft::BidirectionalIterator<value_type const, node_type const>	const_iterator;
 			typedef ft::reverse_iterator<iterator>									reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>							const_reverse_iterator;
@@ -58,7 +58,7 @@ namespace ft
 
 		private:
 			Compare			_comp;
-			key_type		_tree;
+			tree_type		_tree;
 			allocator_type	_alloc;
 
 		public:
@@ -107,6 +107,38 @@ namespace ft
 			allocator_type get_allocator() const;
 
 	};
+
+	template<class T, class Compare, class Allocator>
+	bool operator==(const set<T, Compare, Allocator> &obj, const set<T, Compare, Allocator> &obj2) {
+		if (obj.size() != obj2.size())
+			return false;
+		return ft::equal(obj.begin(), obj.end(), obj2.begin());
+	}
+
+	template<class T, class Compare, class Allocator>
+	bool operator!=(const set<T, Compare, Allocator> &obj, const set<T, Compare, Allocator> &obj2) {
+		return (!(obj2 == obj));
+	}
+
+	template<class T, class Compare, class Allocator>
+	bool operator<(const set<T, Compare, Allocator> &obj, const set<T, Compare, Allocator> &obj2) {
+		return (ft::lexicographical_compare(obj.begin(), obj.end(), obj2.begin(), obj2.end()));
+	}
+
+	template<class T, class Compare, class Allocator>
+	bool operator<=(const set<T, Compare, Allocator> &obj, const set<T, Compare, Allocator> &obj2) {
+		return (!(obj2 < obj));
+	}
+
+	template<class T, class Compare, class Allocator>
+	bool operator>(const set<T, Compare, Allocator> &obj, const set<T, Compare, Allocator> &obj2) {
+		return (obj2 < obj);
+	}
+
+	template<class T, class Compare, class Allocator>
+	bool operator>=(const set<T, Compare, Allocator> &obj, const set<T, Compare, Allocator> &obj2) {
+		return (!(obj < obj2));
+	}
 
 } // namespace ft
 

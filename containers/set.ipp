@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:35:24 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/12 11:11:48 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/12 12:15:43 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,21 +54,21 @@ MySet& MySet::operator=(const set & obj) {
 
 template<class T, class Compare, class Allocator>
 typename MySet::iterator MySet::begin() {
-	return iterator(_tree.minimum(), _tree.getRoot(), _tree.getNill());
+	return iterator(_tree.minimum(), _tree.getRoot(), _tree.getNil());
 }
 
 template<class T, class Compare, class Allocator>
 typename MySet::const_iterator MySet::begin()const {
-	return const_iterator(_tree.minimum(), _tree.getRoot(), _tree.getNill());
+	return const_iterator(_tree.minimum(), _tree.getRoot(), _tree.getNil());
 }
 template<class T, class Compare, class Allocator>
 typename MySet::iterator MySet::end() {
-	return iterator(_tree.getNil(), _tree.getRoot(), _tree.getNill());
+	return iterator(_tree.getNil(), _tree.getRoot(), _tree.getNil());
 }
 
 template<class T, class Compare, class Allocator>
 typename MySet::const_iterator MySet::end() const{
-	return const_iterator(_tree.getNil(), _tree.getRoot(), _tree.getNill());
+	return const_iterator(_tree.getNil(), _tree.getRoot(), _tree.getNil());
 }
 
 template<class T, class Compare, class Allocator>
@@ -94,7 +94,7 @@ typename MySet::const_iterator MySet::rend() const{
 template<class T, class Compare, class Allocator>
 typename MySet::iterator MySet::find (const value_type& val) const {
 	node_ptr tmp = _tree.SearchTree(val);
-	if (tmp == _tree.getNill())
+	if (tmp == _tree.getNil())
 		return end();
 	return iterator(tmp, _tree.getRoot(), _tree.getNil());
 }
@@ -105,7 +105,7 @@ ft::pair<typename MySet::iterator,bool> MySet::insert(const value_type& val) {
 	if (it != end())
 		return ft::pair<iterator, bool>(it, false);
 	else {
-		_tree.InsertNode(val);
+		this->_tree.InsertNode(val);
 		it = find(val);
 		return ft::pair<iterator, bool>(it, true);
 	}

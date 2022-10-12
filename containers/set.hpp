@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:34:49 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/11 17:13:43 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/12 11:11:13 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ namespace ft
 			typedef typename allocator_type::reference			reference;
 			typedef typename allocator_type::pointer			pointer;
 			typedef typename allocator_type::const_pointer		const_pointer;
+			typedef typename allocator_type::size_type			size_type;
+			typedef typename allocator_type::difference_type	difference_type;
 
 			typedef ft::RBT<key_type, value_type, get_key_from_val<value_type, key_type>, key_compare> tree_type;
 			typedef ft::Node<value_type> node_type;
@@ -69,6 +71,8 @@ namespace ft
 
 			~set();
 
+			set &operator=(const set & obj);
+
 			iterator			begin();
 			const_iterator		begin()const;
 			iterator			end();
@@ -79,11 +83,29 @@ namespace ft
 			const_iterator		rend() const;
 
 			iterator find (const value_type& val) const;
-			
+
 			ft::pair<iterator,bool> insert(const value_type& val);
 			iterator insert(iterator position, const value_type& val);
 			template <class InputIterator>
 			void insert(InputIterator first, InputIterator last);
+
+			bool empty() const;
+			size_type size() const;
+			size_type max_size() const;
+			void clear();
+
+			void erase (iterator position);
+			size_type erase (const value_type& val);
+			void erase (iterator first, iterator last);
+			void swap(set &obj);
+			key_compare key_comp() const;
+			value_compare value_comp() const;
+			size_type count(const value_type &val) const;
+			iterator lower_bound (const value_type& val) const;
+			iterator upper_bound (const value_type& val) const;
+			pair<iterator,iterator> equal_range (const value_type& val) const;
+			allocator_type get_allocator() const;
+
 	};
 
 } // namespace ft

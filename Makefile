@@ -14,6 +14,8 @@ LIB =	./containers/vector.hpp\
 		./containers/stack.ipp\
 		./containers/map.hpp\
 		./containers/map.ipp\
+		./containers/set.hpp\
+		./containers/set.ipp\
 		./utils/iterator.hpp\
 		./utils/random_access_iterator.hpp\
 		./utils/type_traits.hpp\

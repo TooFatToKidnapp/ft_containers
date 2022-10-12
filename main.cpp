@@ -24,21 +24,18 @@ using ft::set;
 #endif
 
 int main() {
-	set<int> var;
+	vector<int> var;
 	for (int i = 0; i < 10 ; ++i){
-		var.insert(i * 2);
+		var.push_back(i * 2);
 	}
-	set<int> var2(var.begin(), var.end());
-	var2.insert(1);
-	if (var2 >= var)
-		cout << "true\n";
+	const vector<int> var2(var);
+	
+	// cout << var.size() << " " << var2.size() << "\n";
+	// if (var2 <= var)
+	// 	cout << "true\n";
 
-	// cout << var.size() << "\n";
-	// for (set<int>::iterator it = var.begin(); it != var.end(); ++it){
-	// 	cout << "here: " << *it << "\n";
-	// }
-
-
-
+	for (vector<int>::iterator it = var.begin(); it != var.end(); ++it){
+		cout << "here: " << *it << "\n";
+	}
 
 }

@@ -42,7 +42,7 @@ MySet::~set() {}
 
 template<class T, class Compare, class Allocator>
 MySet& MySet::operator=(const set & obj) {
-	if (this != obj) {
+	if (this != &obj) {
 		if (this->_tree.getRoot() != this->_tree.getNil())
 			clear();
 		this->_comp = obj._comp;

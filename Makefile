@@ -1,6 +1,6 @@
 NAME = ft_containers
 
-CC = Clang++
+CC = c++
 
 FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
 

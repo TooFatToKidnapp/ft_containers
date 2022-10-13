@@ -2,11 +2,12 @@ NAME = ft_containers
 
 CC = c++
 
-FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
+FLAGS = -Wall -Werror -Wextra -std=c++98 #-g -fsanitize=address
 
 OBJ = $(SRC:.cpp=.o)
 
-SRC =	./TestFiles/main.cpp
+SRC =	./TestFiles/ft_vector_tests.cpp\
+		./TestFiles/main.cpp\
 
 LIB =	./containers/vector.hpp\
 		./containers/vector.ipp\
@@ -25,6 +26,7 @@ LIB =	./containers/vector.hpp\
 		./utils/rb_tree.hpp\
 		./utils/rb_node.hpp\
 		./utils/Bidirectional_Iterator.hpp\
+		./TestFiles/utils.hpp\
 
 
 

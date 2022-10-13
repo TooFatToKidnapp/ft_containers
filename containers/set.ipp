@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:35:24 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/12 12:15:43 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/13 15:06:01 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,22 +72,22 @@ typename MySet::const_iterator MySet::end() const{
 }
 
 template<class T, class Compare, class Allocator>
-typename MySet::iterator MySet::rbegin() {
+typename MySet::reverse_iterator MySet::rbegin() {
 	return reverse_iterator(end());
 }
 
 template<class T, class Compare, class Allocator>
-typename MySet::const_iterator MySet::rbegin() const {
+typename MySet::const_reverse_iterator MySet::rbegin() const {
 	return const_reverse_iterator(end());
 }
 
 template<class T, class Compare, class Allocator>
-typename MySet::iterator MySet::rend() {
+typename MySet::reverse_iterator MySet::rend() {
 	return reverse_iterator(begin());
 }
 
 template<class T, class Compare, class Allocator>
-typename MySet::const_iterator MySet::rend() const{
+typename MySet::const_reverse_iterator MySet::rend() const{
 	return const_reverse_iterator(begin());
 }
 

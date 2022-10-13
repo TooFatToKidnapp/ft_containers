@@ -6,7 +6,7 @@ FLAGS = -Wall -Werror -Wextra -std=c++98 -g -fsanitize=address
 
 OBJ = $(SRC:.cpp=.o)
 
-SRC =	main.cpp
+SRC =	./TestFiles/main.cpp
 
 LIB =	./containers/vector.hpp\
 		./containers/vector.ipp\

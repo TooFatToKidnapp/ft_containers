@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:34:49 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/12 12:43:15 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/13 15:06:54 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "./../utils/rb_node.hpp"
 #include "./../utils/Bidirectional_Iterator.hpp"
 #include "./../utils/pair.hpp"
+#include "./../utils/reverse_iterator.hpp"
 
 namespace ft
 {
@@ -50,7 +51,7 @@ namespace ft
 			typedef ft::Node<value_type> node_type;
 			typedef ft::Node<value_type>* node_ptr;
 
-			typedef ft::BidirectionalIterator<value_type const, node_type const>				iterator;
+			typedef ft::BidirectionalIterator<value_type const, node_type const>	iterator;
 			typedef ft::BidirectionalIterator<value_type const, node_type const>	const_iterator;
 			typedef ft::reverse_iterator<iterator>									reverse_iterator;
 			typedef ft::reverse_iterator<const_iterator>							const_reverse_iterator;
@@ -77,10 +78,10 @@ namespace ft
 			const_iterator		begin()const;
 			iterator			end();
 			const_iterator		end() const;
-			iterator			rbegin();
-			const_iterator		rbegin() const;
-			iterator			rend();
-			const_iterator		rend() const;
+			reverse_iterator			rbegin();
+			const_reverse_iterator		rbegin() const;
+			reverse_iterator			rend();
+			const_reverse_iterator		rend() const;
 
 			iterator find (const value_type& val) const;
 

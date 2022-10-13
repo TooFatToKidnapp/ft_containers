@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/11 14:16:07 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/13 13:31:16 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ namespace ft{
 	class map {
 		public:
 
+			// class used to compare elements of type value_type
 			class value_compare;
 
 			typedef Key											key_type;

@@ -19,7 +19,11 @@ void print_title(std::string title, std::string sub) {
 
 int main() {
 
-	header("VECTOR");
+	// header("VECTOR");
+	// while (std::cin.get() != '\n') {}
+	// vector_tests();
+	// cout << std::endl;
+	header("HEADER");
 	while (std::cin.get() != '\n') {}
-	vector_tests();
+	test_stack();
 }

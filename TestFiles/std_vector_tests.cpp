@@ -1,14 +1,14 @@
 #include "./utils.hpp"
 
 
-void print_size(ft::vector<DataType> &vector, std::string name) {
+void print_size(std::vector<DataType> &vector, std::string name) {
 	cout << name << " size: " << vector.size() << ", capacity: " << vector.capacity() << ", max size: " << vector.max_size() << std::endl;
 	cout << name << " is empty: " << std::boolalpha << vector.empty() << std::noboolalpha << std::endl;
 }
 
-void print_vector(ft::vector<DataType> &vector, std::string name) {
+void print_vector(std::vector<DataType> &vector, std::string name) {
 	cout << name << ": ";
-	for (ft::vector<DataType>::iterator it = vector.begin(); it != vector.end(); ++it)
+	for (std::vector<DataType>::iterator it = vector.begin(); it != vector.end(); ++it)
 		cout << *it << " ";
 	cout << std::endl;
 }
@@ -17,26 +17,26 @@ void print_vector(ft::vector<DataType> &vector, std::string name) {
 
 void vector_tests() {
 	print_title("Default Constructor", "ft_vector");
-	ft::vector<DataType> ft_vector;
+	std::vector<DataType> ft_vector;
 	print_size(ft_vector, "vector");
 
 	print_title("FILL CONSTRUCTOR", "ft_vector_fill");
-	ft::vector<DataType> ft_vector_fill(10, 42);
+	std::vector<DataType> ft_vector_fill(10, 42);
 	print_size(ft_vector_fill, "vector_fill");
 	print_vector(ft_vector_fill, "vector_fill");
 
 	print_title("RANGE CONSTRUCTOR", "ft_vector_range");
-	ft::vector<DataType> ft_vector_range(ft_vector_fill.begin(), ft_vector_fill.end());
+	std::vector<DataType> ft_vector_range(ft_vector_fill.begin(), ft_vector_fill.end());
 	print_size(ft_vector_range, "vector_range");
 	print_vector(ft_vector_range, "vector_range");
 
 	print_title("COPY CONSTRUCTOR", "ft_vector_copy");
-	ft::vector<DataType> ft_vector_copy(ft_vector_range);
+	std::vector<DataType> ft_vector_copy(ft_vector_range);
 	print_size(ft_vector_copy, "vector_copy");
 	print_vector(ft_vector_copy, "vector_copy");
 
 	print_title("ASSIGNMENT OPERATOR", "ft_vector_assigned");
-	ft::vector<DataType> ft_vector_assigned;
+	std::vector<DataType> ft_vector_assigned;
 	ft_vector_assigned = ft_vector_range;
 	print_size(ft_vector_assigned, "vector_assigned");
 	print_vector(ft_vector_assigned, "vector_assigned");
@@ -46,22 +46,22 @@ void vector_tests() {
 
 	print_title("ITERATOR TESTE'S");
 	cout << "ft_vector iterator: ";
-	for (ft::vector<DataType>::iterator it = ft_vector.begin(); it != ft_vector.end(); ++it)
+	for (std::vector<DataType>::iterator it = ft_vector.begin(); it != ft_vector.end(); ++it)
 		cout << *it << " ";
 	cout << "\n";
 
 	cout << "ft_vector const_iterator: ";
-	for (ft::vector<DataType>::const_iterator it = ft_vector.begin(); it != ft_vector.end(); ++it)
+	for (std::vector<DataType>::const_iterator it = ft_vector.begin(); it != ft_vector.end(); ++it)
 		cout << *it << " ";
 	cout << "\n";
 
 	cout << "ft_vector reverse_iterator: ";
-	for (ft::vector<DataType>::reverse_iterator it = ft_vector.rbegin(); it != ft_vector.rend(); ++it)
+	for (std::vector<DataType>::reverse_iterator it = ft_vector.rbegin(); it != ft_vector.rend(); ++it)
 		cout << *it << " ";
 	cout << "\n";
 
 	cout << "ft_vector const_reverse_iterator: ";
-	for (ft::vector<DataType>::const_reverse_iterator it = ft_vector.rbegin(); it != ft_vector.rend(); ++it)
+	for (std::vector<DataType>::const_reverse_iterator it = ft_vector.rbegin(); it != ft_vector.rend(); ++it)
 		cout << *it << " ";
 	cout << "\n";
 
@@ -183,7 +183,7 @@ void vector_tests() {
 	print_vector(ft_vector, "vector");
 
 	print_title("VECTOR ERASE(position)", "erasing first half");
-	for (ft::vector<int>::iterator it = (ft_vector.begin() + (ft_vector.size() / 2)); it != ft_vector.end() - 1 ; it++)
+	for (std::vector<int>::iterator it = (ft_vector.begin() + (ft_vector.size() / 2)); it != ft_vector.end() - 1 ; it++)
 		ft_vector.erase(it);
 	print_vector(ft_vector, "vector");
 

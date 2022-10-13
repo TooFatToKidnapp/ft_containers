@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 15:49:19 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/13 17:09:27 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/13 22:02:59 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ using std::cout;
 
 void print_title(std::string title, std::string sub = "");
 void vector_tests();
+void test_stack();
 
 
 

@@ -94,16 +94,6 @@ void vector_tests() {
 	}
 	cout << std::endl;
 
-	try
-	{
-		ft_vector.reserve(ft_vector.max_size() + 1);
-	}
-	catch (std::exception &e)
-	{
-		cout << e.what() << std::endl;
-	}
-	cout << std::endl;
-
 	print_title("VECTOR RESERVE(50)");
 	ft_vector.reserve(50);
 	print_size(ft_vector, "ft_vector");
@@ -149,7 +139,7 @@ void vector_tests() {
 	print_title("VECTOR ASSIGN: ft_vector_fill(first, last)");
 	ft_vector.assign(ft_vector_fill.begin(), ft_vector_fill.end());
 	print_size(ft_vector, "vector");
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
 
 	print_title("VECTOR ASSIGN(n, val)");
 	ft_vector.assign(10, 42);
@@ -163,7 +153,7 @@ void vector_tests() {
 		print_size(ft_vector, "vector");
 	}
 	cout << std::endl;
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
 
 	print_title("VECTOR POP_BACK()");
 	for (int i = 0; i < 10; i++)
@@ -172,48 +162,42 @@ void vector_tests() {
 		print_size(ft_vector, "vector");
 	}
 	cout << std::endl;
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
 
 	print_title("VECTOR INSERT(position, n, val)");
 	ft_vector.insert(ft_vector.begin(), 5, 420);
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
 
 	print_title("VECTOR INSERT(position, first, last)");
 	ft_vector.insert(ft_vector.end(), ft_vector_fill.begin(), ft_vector_fill.end());
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
 
 	print_title("VECTOR ERASE(position)", "erasing first half");
 	for (ft::vector<int>::iterator it = (ft_vector.begin() + (ft_vector.size() / 2)); it != ft_vector.end() - 1 ; it++)
 		ft_vector.erase(it);
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
 
-	print_title("VECTOR SWAP() (MEMBER)", "swaping vector and range vector");
+	print_title("VECTOR SWAP()", "swaping vector and range vector");
 	print_title("BEFORE SWAP");
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
 	print_vector(ft_vector_range, "vector_range");
+	print_size(ft_vector, "vector before swap");
 	ft_vector.swap(ft_vector_range);
 	print_title("AFTER SWAP");
-	print_vector(ft_vector, "vector");
-	print_vector(ft_vector_range, "vector_range");
-
-	print_title("VECTOR SWAP() (NON MEMBER)", "swaping vector and range vector again");
-	print_title("BEFORE SWAP");
-	print_vector(ft_vector, "vector");
-	print_vector(ft_vector_range, "vector_range");
-	std::swap(ft_vector, ft_vector_range);
-	print_title("AFTER SWAP");
-	print_vector(ft_vector, "vector");
+	print_size(ft_vector, "vector after swap");
+	print_vector(ft_vector, "ft_vector");
 	print_vector(ft_vector_range, "vector_range");
 
 	print_title("OPERATIONAL OPERATOR", "vector & vector_copy");
-	print_vector(ft_vector, "vector");
-	print_vector(ft_vector, "vector");
+	print_vector(ft_vector, "ft_vector");
+	cout << std::boolalpha;
 	cout << "vector == vector_copy: " << (ft_vector == ft_vector_copy) << std::endl;
 	cout << "vector != vector_copy: " << (ft_vector != ft_vector_copy) << std::endl;
 	cout << "vector < vector_copy: " << (ft_vector < ft_vector_copy) << std::endl;
 	cout << "vector <= vector_copy: " << (ft_vector <= ft_vector_copy) << std::endl;
 	cout << "vector > vector_copy: " << (ft_vector > ft_vector_copy) << std::endl;
 	cout << "vector >= vector_copy: " << (ft_vector >= ft_vector_copy) << std::endl;
+	cout << std::noboolalpha;
 	cout << std::endl;
 
 	print_title("OPERATIONAL OPERATOR", "vector_assignation & vector_copy");

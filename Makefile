@@ -8,9 +8,9 @@ OBJ = $(SRC:.cpp=.o)
 
 SRC =	./TestFiles/main.cpp\
 		./TestFiles/ft_vector_tests.cpp\
-		./TestFiles/ft_stack_tests.cpp
 #		./TestFiles/std_stack_tests.cpp\
 		./TestFiles/std_vector_tests.cpp\
+		./TestFiles/ft_stack_tests.cpp
 
 LIB =	./containers/vector.hpp\
 		./containers/vector.ipp\

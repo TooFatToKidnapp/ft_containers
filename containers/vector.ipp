@@ -228,7 +228,7 @@ typename ft::vector<T,Alloc>::size_type ft::vector<T,Alloc>::max_size() const{
 template<class T, class Alloc>
 void ft::vector<T,Alloc>::reserve(size_type cap){
 	if (cap > this->max_size())
-		throw std::length_error("vector::reserve - new_cap exceeds vector max_size");
+		throw std::length_error("std::bad_alloc");
 	if (cap > this->capacity()){
 		_reallocate(cap);
 	}

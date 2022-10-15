@@ -1,7 +1,7 @@
 #include "./utils.hpp"
 
 
-void test_stack()
+void stack_tests()
 {
 	cout << YELLOW << "DEFAULT CONSTRUCTOR:" << CLEAR << "stack"<< std::endl;
 	std::stack<DataType> ft_stack;

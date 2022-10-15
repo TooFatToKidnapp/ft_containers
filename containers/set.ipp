@@ -190,10 +190,10 @@ typename MySet::size_type MySet::count(const value_type &val) const {
 
 template<class T, class Compare, class Allocator>
 typename MySet::iterator MySet::lower_bound (const value_type& val) const {
-	const_iterator first = this->begin();
-	const_iterator last = this->end();
+	iterator first = this->begin();
+	iterator last = this->end();
 	while (first != last) {
-		if (this->_comp((*first), val))
+		if (this->_comp((*first), val) == false)
 			break;
 		first++;
 	}
@@ -202,8 +202,8 @@ typename MySet::iterator MySet::lower_bound (const value_type& val) const {
 
 template<class T, class Compare, class Allocator>
 typename MySet::iterator MySet::upper_bound (const value_type& val) const {
-	const_iterator first = this->begin();
-	const_iterator last = this->end();
+	iterator first = this->begin();
+	iterator last = this->end();
 	while (first != last) {
 		if (this->_comp(val, (*first)))
 			break;

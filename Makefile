@@ -7,8 +7,12 @@ FLAGS = -Wall -Werror -Wextra -std=c++98 #-g -fsanitize=address
 OBJ = $(SRC:.cpp=.o)
 
 SRC =	./TestFiles/main.cpp\
-		./TestFiles/ft_vector_tests.cpp\
+		./TestFiles/std_set_tests.cpp\
 #		./TestFiles/std_stack_tests.cpp\
+		./TestFiles/ft_set_tests.cpp\
+		./TestFiles/std_map_tests.cpp\
+		./TestFiles/ft_map_tests.cpp\
+		./TestFiles/ft_vector_tests.cpp\
 		./TestFiles/std_vector_tests.cpp\
 		./TestFiles/ft_stack_tests.cpp
 

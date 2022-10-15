@@ -131,7 +131,7 @@ class map<Key, T, Compare, Alloc>::value_compare {
 		typedef bool result_type;
 		typedef value_type first_argument_type;
 		typedef value_type second_argument_type;
-		bool operator() (const value_compare & obj, const value_compare &obj2) {
+		bool operator() (const value_type & obj, const value_type &obj2) {
 			return (comp(obj.first, obj2.first));
 		}
 };

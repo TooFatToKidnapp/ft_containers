@@ -44,8 +44,9 @@ using std::cout;
 
 void print_title(std::string title, std::string sub = "");
 void vector_tests();
-void test_stack();
-
+void stack_tests();
+void map_tests();
+void set_tests();
 
 
 #endif

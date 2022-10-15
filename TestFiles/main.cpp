@@ -19,20 +19,20 @@ void print_title(std::string title, std::string sub) {
 
 int main() {
 
-	// header("VECTOR");
-	// while (std::cin.get() != '\n') {}
-	// vector_tests();
-	// cout << std::endl;
-	// header("STACK");
-	// while (std::cin.get() != '\n') {}
-	// stack_tests();
-	// cout << std::endl;
-	// header("MAP");
-	// while (std::cin.get() != '\n') {}
-	// map_tests();
-	// cout << std::endl;
+	header("VECTOR");
+	while (std::cin.get() != '\n') {}
+	vector_tests();
+	cout << std::endl;
+	header("STACK");
+	while (std::cin.get() != '\n') {}
+	stack_tests();
+	cout << std::endl;
+	header("MAP");
+	while (std::cin.get() != '\n') {}
+	map_tests();
+	cout << std::endl;
 	header("SET");
-	// while (std::cin.get() != '\n') {}
+	while (std::cin.get() != '\n') {}
 	set_tests();
-	// cout << std::endl;
+	cout << std::endl;
 }

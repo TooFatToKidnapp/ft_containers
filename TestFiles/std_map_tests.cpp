@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   std_map_tests.cpp                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/16 09:43:36 by aabdou            #+#    #+#             */
+/*   Updated: 2022/10/16 09:43:36 by aabdou           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./utils.hpp"
 
 void print_map(std::map<char, int> map, std::string name)
@@ -12,7 +24,7 @@ void print_map(std::map<char, int> map, std::string name)
 void print_size(std::map<char, int> map, std::string name)
 {
 	cout << name << " size: " << map.size() << ", max_size: " << map.max_size() << std::endl;
-	cout << name << " empty() (1: true 0:false): " << map.empty() << std::endl;
+	cout << name << std::boolalpha << " empty(): " << map.empty() << std::noboolalpha << std::endl;
 	cout << std::endl;
 }
 

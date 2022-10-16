@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/16 09:43:34 by aabdou            #+#    #+#             */
+/*   Updated: 2022/10/16 10:44:29 by aabdou           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./utils.hpp"
 
 void header(std::string container) {
@@ -16,23 +28,22 @@ void print_title(std::string title, std::string sub) {
 	cout << YELLOW << title << ": " << CLEAR << sub << "\n\n";
 }
 
-
 int main() {
 
 	header("VECTOR");
-	while (std::cin.get() != '\n') {}
+	std::cin.get();
 	vector_tests();
 	cout << std::endl;
 	header("STACK");
-	while (std::cin.get() != '\n') {}
+	std::cin.get();
 	stack_tests();
 	cout << std::endl;
 	header("MAP");
-	while (std::cin.get() != '\n') {}
+	std::cin.get();
 	map_tests();
 	cout << std::endl;
 	header("SET");
-	while (std::cin.get() != '\n') {}
+	std::cin.get();
 	set_tests();
 	cout << std::endl;
 }

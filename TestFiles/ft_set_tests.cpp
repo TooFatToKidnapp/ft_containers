@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_set_tests.cpp                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/16 09:43:23 by aabdou            #+#    #+#             */
+/*   Updated: 2022/10/16 09:43:23 by aabdou           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"./utils.hpp"
 
 
@@ -13,7 +25,7 @@ void print_set(ft::set<char> set, std::string name)
 void print_size(ft::set<char> set, std::string name)
 {
 	cout << name << " size: " << set.size() << ", max_size: " << set.max_size() << std::endl;
-	cout << name << " empty() (1: true 0:false): " << set.empty() << std::endl;
+	cout << name << std::boolalpha << " empty(): " << set.empty() << std::noboolalpha << std::endl;
 	cout << std::endl;
 }
 

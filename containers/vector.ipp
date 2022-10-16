@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/25 11:27:47 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/16 10:33:13 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,7 @@ typename ft::vector<T,Alloc>::size_type ft::vector<T,Alloc>::max_size() const{
 //	If reallocating, allocator may throw bad_alloc.
 template<class T, class Alloc>
 void ft::vector<T,Alloc>::reserve(size_type cap){
-	if (cap > this->max_size())
+	if (cap >= this->max_size())
 		throw std::length_error("std::bad_alloc");
 	if (cap > this->capacity()){
 		_reallocate(cap);

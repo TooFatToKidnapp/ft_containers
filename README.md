@@ -47,3 +47,8 @@ https://learn.microsoft.com/en-us/cpp/standard-library/enable-if-class?view=msvc
 
 Sentinel node :
 https://en.wikipedia.org/wiki/Sentinel_node
+
+
+rbt :
+https://www.cs.usfca.edu/~galles/visualization/RedBlack.html
+https://en.wikipedia.org/wiki/Red%E2%80%93black_tree#Insertion

@@ -17,11 +17,11 @@ SRC =	./TestFiles/main.cpp\
 		./TestFiles/ft_stack_tests.cpp
 
 
-STD_SRC =	./TestFiles/std_set_tests.cpp\
+STD_SRC =	./TestFiles/main.cpp\
+			./TestFiles/std_set_tests.cpp\
 			./TestFiles/std_map_tests.cpp\
 			./TestFiles/std_vector_tests.cpp\
-			./TestFiles/std_stack_tests.cpp\
-			./TestFiles/main.cpp
+			./TestFiles/std_stack_tests.cpp
 
 
 LIB =	./containers/vector.hpp\
@@ -41,7 +41,7 @@ LIB =	./containers/vector.hpp\
 		./utils/rb_tree.hpp\
 		./utils/rb_node.hpp\
 		./utils/Bidirectional_Iterator.hpp\
-		./TestFiles/utils.hpp\
+		./TestFiles/utils.hpp
 
 
 

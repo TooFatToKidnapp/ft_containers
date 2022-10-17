@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 09:43:34 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/16 17:50:12 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/17 16:19:47 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ void print_title(std::string title, std::string sub) {
 int main() {
 
 	header("VECTOR");
-	// std::cin.get();
+	std::cin.get();
 	vector_tests();
-	// cout << std::endl;
-	// header("STACK");
-	// std::cin.get();
-	// stack_tests();
-	// cout << std::endl;
-	// header("MAP");
-	// std::cin.get();
-	// map_tests();
-	// cout << std::endl;
-	// header("SET");
-	// std::cin.get();
-	// set_tests();
-	// cout << std::endl;
+	cout << std::endl;
+	header("STACK");
+	std::cin.get();
+	stack_tests();
+	cout << std::endl;
+	header("MAP");
+	std::cin.get();
+	map_tests();
+	cout << std::endl;
+	header("SET");
+	std::cin.get();
+	set_tests();
+	cout << std::endl;
 }

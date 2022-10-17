@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 09:43:45 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/16 09:43:46 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/17 10:58:47 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void vector_tests() {
 	print_title("ACCESSOR AND MEMBER FUNCTIONS", "size, max_size, capacity, resize, empty, reserve");
 	print_title("BEFORE RESIZE");
 	print_size(ft_vector, "ft_vector");
+	print_vector(ft_vector, "ft_vector");
 
 	print_title("AFTER RESIZE(20)");
 	ft_vector.resize(20);

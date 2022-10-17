@@ -24,7 +24,7 @@ void print_set(std::set<char> set, std::string name)
 
 void print_size(std::set<char> set, std::string name)
 {
-	cout << name << " size: " << set.size() << ", max_size: " << set.max_size() << std::endl;
+	cout << name << " size: " << set.size() << std::endl;
 	cout << name << std::boolalpha << " empty(): " << set.empty() << std::noboolalpha << std::endl;
 	cout << std::endl;
 }
@@ -109,8 +109,9 @@ void set_tests()
 
 	print_title("SET ERASE(position)", "erasing first half of set_copy");
 	std::set<char>::iterator std_it_half = ft_set_copy.find('n');
-	for (std::set<char>::iterator it = ft_set_copy.begin(); it != std_it_half; it++)
-		ft_set_copy.erase(it);
+	std::set<char>::iterator it2 = ft_set_copy.begin();
+	while (it2 != std_it_half)
+		ft_set_copy.erase(it2++);
 	print_set(ft_set_copy, "set_copy");
 	print_size(ft_set_copy, "set_copy");
 

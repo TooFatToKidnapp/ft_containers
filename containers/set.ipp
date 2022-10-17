@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:35:24 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/13 15:06:01 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/17 11:57:05 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ typename MySet::size_type MySet::size() const {
 
 template<class T, class Compare, class Allocator>
 typename MySet::size_type MySet::max_size() const {
-	return this->_tree.max_size();
+	return (this->_tree.max_size());
 }
 
 template<class T, class Compare, class Allocator>

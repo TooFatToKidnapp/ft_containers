@@ -108,8 +108,10 @@ void map_tests()
 
 	print_title("MAP ERASE(position)", "erasing first half of map_copy");
 	ft::map<char, int>::iterator std_it_half = ft_map_copy.find('n');
-	for (ft::map<char, int>::iterator it = ft_map_copy.begin(); it != std_it_half; it++)
-		ft_map_copy.erase(it);
+	ft::map<char, int>::iterator it2 = ft_map_copy.begin();
+	while( it2 != std_it_half)
+		ft_map_copy.erase(it2++);
+
 	print_map(ft_map_copy, "map_copy");
 	print_size(ft_map_copy, "map_copy");
 

@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/22 16:28:42 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/13 14:34:07 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/17 14:06:04 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 namespace ft {
 
 	template<class T, class N>
-	class BidirectionalIterator : public ft::iterator<ft::bidirectional_iterator_tag, T>
+	class BidirectionalIterator //: public ft::iterator<ft::bidirectional_iterator_tag, T>
 	{
 		public:
 			typedef T								value_type;

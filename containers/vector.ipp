@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 14:17:07 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/16 18:06:47 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/17 11:05:18 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,14 +163,14 @@ typename ft::vector<T,Alloc>::const_reference ft::vector<T, Alloc>::operator[](s
 template<class T, class Alloc>
 typename ft::vector<T,Alloc>::reference ft::vector<T, Alloc>::at(size_type pos){
 	if(pos >= this->_current_size)
-		throw std::out_of_range("vector::at - index given is out of range");
+		throw std::out_of_range("vector");
 	return this->_array[pos];
 }
 
 template<class T, class Alloc>
 typename ft::vector<T,Alloc>::const_reference ft::vector<T, Alloc>::at(size_type pos) const{
 	if(pos >= this->_current_size)
-		throw std::out_of_range("vector::at - index given is out of range");
+		throw std::out_of_range("vector");
 	return this->_array[pos];
 }
 
@@ -416,12 +416,17 @@ template<class T, class Alloc>
 void	ft::vector<T,Alloc>::resize(size_type count, value_type val){
 	if (count > this->max_size())
 		throw std::length_error("vector::resize - count exceeds vector max_size");
-	else if (count < this->size())
-		_destroy_until(this->_array + count, this->_array + this->_current_size);
+	else if (count < this->_current_size) {
+		while (this->_current_size != count)
+			this->pop_back();
+	}
 	else {
-		this->reserve(count);
-		while (count > this->size())
-			push_back(val);
+		if (count > (_current_capacity * 2) || !_current_capacity)
+			_reallocate(count);
+		else if (count > _current_capacity)
+			_reallocate(_current_capacity * 2);
+		while (_current_size != count)
+			this->push_back(val);
 	}
 }
 

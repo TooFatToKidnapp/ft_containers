@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 09:43:27 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/16 09:43:28 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/18 09:16:27 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void stack_tests()
 	cout << std::endl;
 
 	cout << YELLOW << "EMPTY:" << CLEAR << std::endl;
-	cout << "stack empty() (1/true if empty 0/false if not): " << std::boolalpha << ft_stack.empty() << std::noboolalpha << std::endl;
+	cout << "stack empty(): " << std::boolalpha << ft_stack.empty() << std::noboolalpha << std::endl;
 
 	cout << std::endl;
 
@@ -45,7 +45,7 @@ void stack_tests()
 	cout << std::endl;
 
 	cout << YELLOW << "EMPTY:" << CLEAR << std::endl;
-	cout << "stack empty() (1/true if empty 0/false if not): " << std::boolalpha << ft_stack.empty() << std::noboolalpha << std::endl;
+	cout << "stack empty(): " << std::boolalpha << ft_stack.empty() << std::noboolalpha << std::endl;
 	cout << std::endl;
 
 	cout << YELLOW << "COPY CONSTRUCTOR:" << CLEAR << std::endl;

@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 18:33:05 by aabdou            #+#    #+#             */
-/*   Updated: 2022/09/21 19:43:19 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/18 11:54:21 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ namespace ft
 
 			// assignment operator
 			pair &operator=(pair const &other){
-				if(this == &other)
-					return *this;
-				first = other.first;
-				second = other.second;
+				if(this != &other) {
+					first = other.first;
+					second = other.second;
+				}
 				return *this;
 			}
 

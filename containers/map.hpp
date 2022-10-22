@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:28 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/13 13:31:16 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/22 10:01:46 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ namespace ft{
 
 			typedef Key											key_type;
 			typedef T											mapped_type;
-			typedef ft::pair<const Key, T>						value_type;
+			typedef ft::pair<Key, T>							value_type;
 			typedef Compare										key_compare;
 			typedef Allocator									allocator_type;
 			typedef typename allocator_type::size_type			size_type;

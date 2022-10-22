@@ -106,6 +106,20 @@ void map_tests()
 	print_map(ft_map_copy, "map_copy");
 	print_size(ft_map_copy, "map_copy");
 
+	print_title("MAP AT", "returning the value at a give index in map_copy");
+	cout << "searching for the value at index 't': ";
+	cout << ft_map_copy.at('t') << std::endl;
+	cout << "searching for the value at index 'n': ";
+	cout << ft_map_copy.at('n') << std::endl;
+
+	try {
+		cout << "searching for the value at index 'Z': ";
+		cout << ft_map_copy.at('Z');
+	}
+	catch(std::exception const &x) {
+		cout << x.what() << std::endl;
+	}
+
 	print_title("MAP ERASE(position)", "erasing first half of map_copy");
 	ft::map<char, int>::iterator std_it_half = ft_map_copy.find('n');
 	ft::map<char, int>::iterator it2 = ft_map_copy.begin();
@@ -114,6 +128,7 @@ void map_tests()
 
 	print_map(ft_map_copy, "map_copy");
 	print_size(ft_map_copy, "map_copy");
+
 
 	print_title("MAP ERASE(key)", "erasing another half of map_copy");
 	c = 'n';

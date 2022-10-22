@@ -6,7 +6,7 @@
 /*   By: aabdou <aabdou@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 16:27:31 by aabdou            #+#    #+#             */
-/*   Updated: 2022/10/12 10:40:46 by aabdou           ###   ########.fr       */
+/*   Updated: 2022/10/22 10:01:39 by aabdou           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ template<class Key, class T, class Compare , class Allocator>
 T& MyMap::at( const Key& key ) {
 	node_ptr tmp = this->_tree.SearchTree(key);
 	if (tmp == this->_tree.getNil())
-		throw(std::out_of_range("ft::map.at(), key not found"));
+		throw(std::out_of_range("map::at:  key not found"));
 	return tmp->data.second;
 }
 
@@ -128,7 +128,7 @@ template<class Key, class T, class Compare , class Allocator>
 const T& MyMap::at( const Key& key ) const {
 	node_ptr tmp = this->_tree.SearchTree(key);
 	if (tmp == this->_tree.getNil())
-		throw(std::out_of_range("ft::map.at(), key not found"));
+		throw(std::out_of_range("map::at:  key not found"));
 	return tmp->data.second;
 }
 

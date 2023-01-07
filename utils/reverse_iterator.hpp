@@ -45,7 +45,7 @@ namespace ft {
 		// destructor
 		virtual ~reverse_iterator(){}
 		reverse_iterator &operator=(reverse_iterator const &obj) {
-			if (this != obj)
+			if (this != &obj)
 				this->_current = obj._current;
 			return (*this);
 		}

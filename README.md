@@ -1,6 +1,6 @@
 you will fined two pdf documents attached in this repository, i highly recommend you to check them out if you are working on this project yourself.
 
-Into to algirithems was my resource for the Red Black Tree data structure.
+Into to algorithems was my resource for the Red Black Tree data structure.
 
 The C++Standard Library - 2nd Edition was a great help when trying to understand the STL works.
 

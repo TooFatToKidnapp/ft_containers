@@ -19,6 +19,9 @@
 #include "../utils/pair.hpp"
 #include "../utils/Bidirectional_Iterator.hpp"
 #include "../utils/allocator.hpp"
+#include "../utils/lexicographical_compare.hpp"
+#include "../utils/equal.hpp"
+#include "../utils/reverse_iterator.hpp"
 
 namespace ft{
 

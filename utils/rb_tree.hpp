@@ -44,7 +44,7 @@ namespace ft {
 			RBT(const key_compare &comp = key_compare(), const allocator_type &alloc = allocator_type())
 				: _comp(comp), _alloc(alloc), _size(0) {
 					_nil = _alloc.allocate(1);
-					_alloc.construct(_nil, node_type(value_type(), NULL, NULL, NULL, BLACK));
+					// _alloc.construct(_nil, node_type(value_type(), NULL, NULL, NULL, BLACK));
 					_root = _nil;
 				}
 
@@ -331,14 +331,15 @@ namespace ft {
 			node_ptr _SearchTree(node_ptr node, key_type key) const {
 				if (node == _nil)
 					return _nil;
-				if (key == get_key_from_val()(node->data))
-					return node;
+				// if (key == get_key_from_val()(node->data))
+				// 	return node;
 				if (node != _nil) {
 					if (_comp(key, get_key_from_val()(node->data)))
 						return _SearchTree(node->left, key);
-					return _SearchTree(node->right, key);
+					else if (_comp(get_key_from_val()(node->data), key))
+						return _SearchTree(node->right, key);
 				}
-				return _nil;
+				return node;
 			}
 			void _Print(node_ptr node) {
 				if (_root != _nil) {
